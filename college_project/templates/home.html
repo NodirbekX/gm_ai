@@ -58,6 +58,21 @@
                 <button>Batafsil</button>
             </div>
 
+            <div class="car-card">
+                <img src="{% static 'images/car3.webp' %}" alt="">
+                <h3>Chevrolet Onix</h3>
+                <p class="price">15 000 000 SO'M</p>
+                <button>Batafsil</button>
+            </div>
+
+
+            <div class="car-card">
+                <img src="{% static 'images/car3.webp' %}" alt="">
+                <h3>Chevrolet Onix</h3>
+                <p class="price">15 000 000 SO'M</p>
+                <button>Batafsil</button>
+            </div>
+
             <!-- add more cards here -->
 
         </div>
@@ -75,68 +90,107 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-    const slides = document.querySelectorAll(".slide");
-    const left = document.querySelector(".arrow.left");
-    const right = document.querySelector(".arrow.right");
-    const dotsContainer = document.querySelector(".dots");
+    /* ================= HERO SLIDER ================= */
 
-    if (slides.length === 0) return;
+    const heroSlides = document.querySelectorAll(".hero-slider .slide");
+    const heroLeft = document.querySelector(".hero-slider .arrow.left");
+    const heroRight = document.querySelector(".hero-slider .arrow.right");
+    const dotsContainer = document.querySelector(".hero-slider .dots");
 
-    let index = 0;
-    let interval;
+    if (heroSlides.length > 0) {
 
-    // Create dots dynamically
-    slides.forEach((_, i) => {
-        const dot = document.createElement("span");
-        if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => {
-            index = i;
-            showSlide(index);
-            resetAuto();
+        let heroIndex = 0;
+        let heroInterval;
+
+        heroSlides.forEach((_, i) => {
+            const dot = document.createElement("span");
+            if (i === 0) dot.classList.add("active");
+            dot.addEventListener("click", () => {
+                heroIndex = i;
+                showHero(heroIndex);
+                resetHeroAuto();
+            });
+            dotsContainer.appendChild(dot);
         });
-        dotsContainer.appendChild(dot);
-    });
 
-    const dots = document.querySelectorAll(".dots span");
+        const heroDots = document.querySelectorAll(".hero-slider .dots span");
 
-    function showSlide(i) {
-        slides.forEach(s => s.classList.remove("active"));
-        dots.forEach(d => d.classList.remove("active"));
+        function showHero(i) {
+            heroSlides.forEach(s => s.classList.remove("active"));
+            heroDots.forEach(d => d.classList.remove("active"));
+            heroSlides[i].classList.add("active");
+            heroDots[i].classList.add("active");
+        }
 
-        slides[i].classList.add("active");
-        dots[i].classList.add("active");
+        function nextHero() {
+            heroIndex = (heroIndex + 1) % heroSlides.length;
+            showHero(heroIndex);
+        }
+
+        function prevHero() {
+            heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
+            showHero(heroIndex);
+        }
+
+        function startHeroAuto() {
+            heroInterval = setInterval(nextHero, 4000);
+        }
+
+        function resetHeroAuto() {
+            clearInterval(heroInterval);
+            startHeroAuto();
+        }
+
+        heroRight?.addEventListener("click", () => {
+            nextHero();
+            resetHeroAuto();
+        });
+
+        heroLeft?.addEventListener("click", () => {
+            prevHero();
+            resetHeroAuto();
+        });
+
+        startHeroAuto();
     }
 
-    function nextSlide() {
-        index = (index + 1) % slides.length;
-        showSlide(index);
+
+    /* ================= CAR SLIDER ================= */
+
+    const carSlider = document.querySelector(".car-slider");
+    const carLeft = document.querySelector(".car-arrow.left");
+    const carRight = document.querySelector(".car-arrow.right");
+
+    if (carSlider) {
+
+        const carCards = document.querySelectorAll(".car-card");
+        const gap = 30;
+        const cardWidth = carCards[0].offsetWidth + gap;
+
+        let carIndex = 0;
+
+        function updateCarSlider() {
+            carSlider.style.transform = `translateX(-${carIndex * cardWidth}px)`;
+        }
+
+        carRight?.addEventListener("click", () => {
+            if (carIndex < carCards.length - 3) {
+                carIndex++;
+            } else {
+                carIndex = 0;
+            }
+            updateCarSlider();
+        });
+
+        carLeft?.addEventListener("click", () => {
+            if (carIndex > 0) {
+                carIndex--;
+            } else {
+                carIndex = carCards.length - 3;
+            }
+            updateCarSlider();
+        });
     }
-
-    function prevSlide() {
-        index = (index - 1 + slides.length) % slides.length;
-        showSlide(index);
-    }
-
-    function startAuto() {
-        interval = setInterval(nextSlide, 4000);
-    }
-
-    function resetAuto() {
-        clearInterval(interval);
-        startAuto();
-    }
-
-    right?.addEventListener("click", () => {
-        nextSlide();
-        resetAuto();
-    });
-
-    left?.addEventListener("click", () => {
-        prevSlide();
-        resetAuto();
-    });
-
-    startAuto();
 
 });
 </script>
