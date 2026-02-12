@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero-slider">
+
+    <div class="slide active">
+        <img src="{% static 'images/slide1.png' %}" alt="">
+    </div>
+
+    <div class="slide">
+        <img src="{% static 'images/slide2.png' %}" alt="">
+    </div>
+    <div class="slide">
+        <img src="{% static 'images/slide3.png' %}" alt="">
+    </div>
+
+    <!-- Arrows -->
+    <div class="arrow left">&#10094;</div>
+    <div class="arrow right">&#10095;</div>
+
+    <!-- Dots -->
+    <div class="dots"></div>
+
+</section>
+
+
+<!-- CARS SECTION -->
+<section class="cars-section">
+    <h2>Avtomobillar</h2>
+
+    <div class="cars-grid">
+        <div class="car-card">
+            <img src="{% static 'images/car1.png' %}" alt="">
+            <h3>Chevrolet Captiva</h3>
+        </div>
+
+        <div class="car-card">
+            <img src="{% static 'images/car2.png' %}" alt="">
+            <h3>Chevrolet Tracker</h3>
+        </div>
+
+        <div class="car-card">
+            <img src="{% static 'images/car3.webp' %}" alt="">
+            <h3>Chevrolet Onix</h3>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const slides = document.querySelectorAll(".slide");
+    const left = document.querySelector(".arrow.left");
+    const right = document.querySelector(".arrow.right");
+    const dotsContainer = document.querySelector(".dots");
+
+    let index = 0;
+
+    // Create dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement("span");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".dots span");
+
+    function showSlide(i) {
+        slides.forEach(s => s.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
+        slides[i].classList.add("active");
+        dots[i].classList.add("active");
+    }
+
+    function nextSlide() {
+        index = (index + 1) % slides.length;
+        showSlide(index);
+    }
+
+    function prevSlide() {
+        index = (index - 1 + slides.length) % slides.length;
+        showSlide(index);
+    }
+
+    function goToSlide(i) {
+        index = i;
+        showSlide(index);
+    }
+
+    right.addEventListener("click", nextSlide);
+    left.addEventListener("click", prevSlide);
+
+    setInterval(nextSlide, 5000);
+
+});
+</script>
+
+{% endblock %}

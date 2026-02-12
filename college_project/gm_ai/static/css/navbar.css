@@ -1,0 +1,201 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.top-navbar {
+    height: 90px;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    border-bottom: 2px solid #000;
+    position: relative;
+    z-index: 1100;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+    width: 28px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    height: 2px;
+    background: #222;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    margin-right: 25px;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #c9a227;
+}
+
+/* ===== CENTER LOGO ===== */
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-center img {
+    height: 40px;
+}
+
+/* ===== RIGHT SIDE ===== */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.lang a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    margin: 0 4px;
+}
+
+.lang a:hover {
+    color: #c9a227;
+}
+
+.icon-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.icon-circle:hover {
+    background: #eee;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+}
+
+.login-link:hover {
+    color: #c9a227;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    padding: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+/* ===== SIDEBAR ===== */
+/* ===== SIDEBAR FIXED VERSION ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100%;
+    background: #f8f8f8;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    z-index: 1200;
+    padding: 40px 30px;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+
+.sidebar-header {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    font-size: 26px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.close-btn:hover {
+    color: #c9a227;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    padding: 14px 0;
+    font-weight: 500;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.sidebar-menu li:hover {
+    color: #c9a227;
+    padding-left: 6px;
+}
+
+.sidebar-menu hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* ===== OVERLAY ===== */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 1100;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
