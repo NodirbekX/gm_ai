@@ -30,31 +30,48 @@
 
 
 <!-- CARS SECTION -->
-<section class="cars-section">
+<section class="car-slider-section">
+
     <h2>Avtomobillar</h2>
 
-    <div class="cars-grid">
-        <div class="car-card">
-            <img src="{% static 'images/car1.png' %}" alt="">
-            <h3>Chevrolet Captiva</h3>
+    <div class="car-slider-wrapper">
+        <div class="car-slider">
+
+            <div class="car-card">
+                <img src="{% static 'images/car1.png' %}" alt="">
+                <h3>Chevrolet Captiva</h3>
+                <p class="price">15 000 000 SO'M</p>
+                <button>Batafsil</button>
+            </div>
+
+            <div class="car-card">
+                <img src="{% static 'images/car2.png' %}" alt="">
+                <h3>Chevrolet Traverse</h3>
+                <p class="price">80 000 000 SO'M</p>
+                <button>Batafsil</button>
+            </div>
+
+            <div class="car-card">
+                <img src="{% static 'images/car3.webp' %}" alt="">
+                <h3>Chevrolet Onix</h3>
+                <p class="price">15 000 000 SO'M</p>
+                <button>Batafsil</button>
+            </div>
+
+            <!-- add more cards here -->
+
         </div>
 
-        <div class="car-card">
-            <img src="{% static 'images/car2.png' %}" alt="">
-            <h3>Chevrolet Tracker</h3>
-        </div>
+        <div class="car-arrow left">&#10094;</div>
+        <div class="car-arrow right">&#10095;</div>
 
-        <div class="car-card">
-            <img src="{% static 'images/car3.webp' %}" alt="">
-            <h3>Chevrolet Onix</h3>
-        </div>
     </div>
+
 </section>
 
 {% endblock %}
 
 {% block scripts %}
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -63,13 +80,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const right = document.querySelector(".arrow.right");
     const dotsContainer = document.querySelector(".dots");
 
-    let index = 0;
+    if (slides.length === 0) return;
 
-    // Create dots
+    let index = 0;
+    let interval;
+
+    // Create dots dynamically
     slides.forEach((_, i) => {
         const dot = document.createElement("span");
         if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => goToSlide(i));
+        dot.addEventListener("click", () => {
+            index = i;
+            showSlide(index);
+            resetAuto();
+        });
         dotsContainer.appendChild(dot);
     });
 
@@ -78,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function showSlide(i) {
         slides.forEach(s => s.classList.remove("active"));
         dots.forEach(d => d.classList.remove("active"));
+
         slides[i].classList.add("active");
         dots[i].classList.add("active");
     }
@@ -92,17 +117,29 @@ document.addEventListener("DOMContentLoaded", function() {
         showSlide(index);
     }
 
-    function goToSlide(i) {
-        index = i;
-        showSlide(index);
+    function startAuto() {
+        interval = setInterval(nextSlide, 4000);
     }
 
-    right.addEventListener("click", nextSlide);
-    left.addEventListener("click", prevSlide);
+    function resetAuto() {
+        clearInterval(interval);
+        startAuto();
+    }
 
-    setInterval(nextSlide, 5000);
+    right?.addEventListener("click", () => {
+        nextSlide();
+        resetAuto();
+    });
+
+    left?.addEventListener("click", () => {
+        prevSlide();
+        resetAuto();
+    });
+
+    startAuto();
 
 });
 </script>
-
 {% endblock %}
+
+

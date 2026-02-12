@@ -1,58 +1,12 @@
-.hero {
-    height: 500px;
-    background: url("/static/images/hero.jpg") center/cover no-repeat;
-    display: flex;
-    align-items: center;
-    padding-left: 80px;
-    color: white;
+/* ================= GLOBAL FIX ================= */
+.main-content {
+    padding: 0;
 }
 
-.hero-content h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-}
+/* ================= HERO SLIDER ================= */
 
-.hero-content p {
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-.btn-primary {
-    padding: 12px 30px;
-    background: black;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.cars-section {
-    padding: 80px;
-}
-
-.cars-section h2 {
-    font-size: 32px;
-    margin-bottom: 40px;
-}
-
-.cars-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-.car-card img {
-    width: 100%;
-}
-
-.car-card h3 {
-    margin-top: 15px;
-}
-
-/* ===== HERO SLIDER ===== */
 .hero-slider {
     position: relative;
-    padding: 0;
-    margin: 0;
     width: 100%;
     height: 85vh;
     overflow: hidden;
@@ -65,11 +19,10 @@
     opacity: 0;
     transition: opacity 0.6s ease;
 }
-.main-content{
-    padding: 0;
-}
+
 .slide.active {
     opacity: 1;
+    z-index: 1;
 }
 
 .slide img {
@@ -78,6 +31,7 @@
     object-fit: cover;
 }
 
+/* Slider Content */
 .slide-content {
     position: absolute;
     top: 30%;
@@ -92,18 +46,20 @@
 }
 
 .slide-content p {
-    font-size: 24px;
+    font-size: 22px;
     margin-bottom: 30px;
 }
 
+/* Button */
 .btn-primary {
     padding: 12px 30px;
     background: black;
     color: white;
     text-decoration: none;
+    font-weight: 600;
 }
 
-/* Arrows */
+/* Slider Arrows */
 .arrow {
     position: absolute;
     top: 50%;
@@ -120,7 +76,7 @@
 .arrow.left { left: 20px; }
 .arrow.right { right: 20px; }
 
-/* Dots */
+/* Slider Dots */
 .dots {
     position: absolute;
     bottom: 20px;
@@ -142,3 +98,67 @@
 .dots span.active {
     opacity: 1;
 }
+
+/* ================= CAR SLIDER ================= */
+
+.car-slider-section {
+    padding: 80px 60px;
+    position: relative;
+}
+
+.car-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.car-slider {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease;
+}
+
+.car-card {
+    min-width: 350px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.car-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.car-card h3 {
+    margin: 15px 0 10px;
+}
+
+.price {
+    font-weight: bold;
+    color: #f0a500;
+}
+
+.car-card button {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #f0a500;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Car Slider Arrows */
+.car-arrow {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    cursor: pointer;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.car-arrow.left { left: 10px; }
+.car-arrow.right { right: 10px; }
