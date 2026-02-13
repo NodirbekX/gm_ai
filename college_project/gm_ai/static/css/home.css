@@ -1,7 +1,9 @@
-/* ================= GLOBAL FIX ================= */
+/* ================= GLOBAL ================= */
+
 .main-content {
     padding: 0;
 }
+
 
 /* ================= HERO SLIDER ================= */
 
@@ -14,8 +16,7 @@
 
 .slide {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     opacity: 0;
     transition: opacity 0.6s ease;
 }
@@ -36,8 +37,8 @@
     position: absolute;
     top: 30%;
     left: 8%;
-    color: white;
     max-width: 500px;
+    color: #fff;
 }
 
 .slide-content h1 {
@@ -50,33 +51,35 @@
     margin-bottom: 30px;
 }
 
-/* Button */
 .btn-primary {
     padding: 12px 30px;
-    background: black;
-    color: white;
+    background: #000;
+    color: #fff;
     text-decoration: none;
     font-weight: 600;
 }
 
-/* Slider Arrows */
+/* Arrows */
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
     padding: 10px;
-    background: rgba(0,0,0,0.3);
+
+    font-size: 40px;
+    color: #fff;
+
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 50%;
+    cursor: pointer;
+
     user-select: none;
 }
 
 .arrow.left { left: 20px; }
 .arrow.right { right: 20px; }
 
-/* Slider Dots */
+/* Dots */
 .dots {
     position: absolute;
     bottom: 20px;
@@ -85,12 +88,14 @@
 }
 
 .dots span {
-    height: 10px;
     width: 10px;
+    height: 10px;
     margin: 0 5px;
+
     display: inline-block;
-    background: white;
     border-radius: 50%;
+
+    background: #fff;
     opacity: 0.5;
     cursor: pointer;
 }
@@ -98,6 +103,7 @@
 .dots span.active {
     opacity: 1;
 }
+
 
 /* ================= CAR SLIDER ================= */
 
@@ -107,8 +113,8 @@
 }
 
 .car-slider-wrapper {
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
 .car-slider {
@@ -119,9 +125,10 @@
 
 .car-card {
     min-width: 350px;
-    background: white;
-    border: 1px solid #ddd;
     padding: 15px;
+
+    background: #fff;
+    border: 1px solid #ddd;
 }
 
 .car-card img {
@@ -142,6 +149,7 @@
 .car-card button {
     width: 100%;
     padding: 10px;
+
     border: 1px solid #f0a500;
     background: transparent;
     cursor: pointer;
@@ -152,13 +160,223 @@
     position: absolute;
     top: 40%;
     transform: translateY(-50%);
-    font-size: 40px;
-    cursor: pointer;
-    background: rgba(0,0,0,0.4);
-    color: white;
     padding: 10px;
+
+    font-size: 40px;
+    color: #fff;
+
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .car-arrow.left { left: 10px; }
 .car-arrow.right { right: 10px; }
+
+
+/* ================= PROMO GRID ================= */
+
+.promo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.promo-item {
+    position: relative;
+    min-height: 520px;
+}
+
+/* Image side */
+.promo-item img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Text side */
+.promo-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px;
+}
+
+.promo-text.blue {
+    background: #1e73be;
+    color: #fff;
+}
+
+.promo-text.dark {
+    background: #1f4c8c;
+    color: #fff;
+}
+
+.promo-content {
+    max-width: 520px;
+}
+
+.promo-content h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.promo-content .subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.promo-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.promo-btn {
+    padding: 12px 40px;
+
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.promo-btn:hover {
+    background: #fff;
+    color: #1e73be;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 992px) {
+
+    .promo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promo-item {
+        min-height: 420px;
+    }
+}
+
+/* ================= FOOTER ================= */
+
+.site-footer {
+    background: #f2f2f2;
+    margin-top: 80px;
+}
+
+/* ===== PROMO ===== */
+.footer-promo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 80px;
+    border-bottom: 1px solid #ddd;
+}
+
+.footer-promo-image img {
+    width: 350px;
+}
+
+.footer-promo-text {
+    max-width: 500px;
+}
+
+.footer-promo-text h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.footer-promo-text p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: #c9a227;
+}
+
+/* ===== LINKS ===== */
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 60px 80px;
+    gap: 40px;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    font-size: 13px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #555;
+}
+
+.footer-column li:hover {
+    color: #c9a227;
+}
+
+/* ===== BOTTOM ===== */
+.footer-bottom {
+    border-top: 1px solid #ccc;
+    padding: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.footer-social span {
+    margin: 0 8px;
+    background: #ddd;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.footer-right {
+    font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+
+    .footer-promo {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

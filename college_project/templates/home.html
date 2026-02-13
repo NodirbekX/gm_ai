@@ -5,7 +5,7 @@
 
 {% block content %}
 
-<!-- HERO SECTION -->
+<!-- ================= HERO SLIDER ================= -->
 <section class="hero-slider">
 
     <div class="slide active">
@@ -15,26 +15,26 @@
     <div class="slide">
         <img src="{% static 'images/slide2.png' %}" alt="">
     </div>
+
     <div class="slide">
         <img src="{% static 'images/slide3.png' %}" alt="">
     </div>
 
-    <!-- Arrows -->
     <div class="arrow left">&#10094;</div>
     <div class="arrow right">&#10095;</div>
 
-    <!-- Dots -->
     <div class="dots"></div>
 
 </section>
 
 
-<!-- CARS SECTION -->
+<!-- ================= CAR SLIDER ================= -->
 <section class="car-slider-section">
 
     <h2>Avtomobillar</h2>
 
     <div class="car-slider-wrapper">
+
         <div class="car-slider">
 
             <div class="car-card">
@@ -60,20 +60,17 @@
 
             <div class="car-card">
                 <img src="{% static 'images/car3.webp' %}" alt="">
-                <h3>Chevrolet Onix</h3>
-                <p class="price">15 000 000 SO'M</p>
+                <h3>Chevrolet Malibu</h3>
+                <p class="price">25 000 000 SO'M</p>
                 <button>Batafsil</button>
             </div>
-
 
             <div class="car-card">
                 <img src="{% static 'images/car3.webp' %}" alt="">
-                <h3>Chevrolet Onix</h3>
-                <p class="price">15 000 000 SO'M</p>
+                <h3>Chevrolet Tracker</h3>
+                <p class="price">35 000 000 SO'M</p>
                 <button>Batafsil</button>
             </div>
-
-            <!-- add more cards here -->
 
         </div>
 
@@ -84,7 +81,168 @@
 
 </section>
 
+
+<!-- ================= MODEL HIGHLIGHT ================= -->
+<section class="model-highlight">
+
+    <div class="model-tabs">
+        <span class="active" data-model="onix">Onix</span>
+        <span data-model="tracker">Tracker</span>
+    </div>
+
+    <div class="model-image">
+        <img id="modelImg" src="{% static 'images/onix-big.png' %}" alt="">
+    </div>
+
+    <div class="model-info">
+        <p class="model-small-text">
+            Eng kutilgan yangilik. Ishlab chiqarilishidan avval xaridorlar “yoqimtoy”ga aylanib ulgurgan avtomobil.
+        </p>
+
+        <h2 id="modelTitle">Chevrolet Onix</h2>
+
+        <p class="model-subtitle">
+            Chevrolet ONIX – Barchasi u haqida
+        </p>
+
+        <div class="model-buttons">
+            <button class="btn-outline">Batafsil</button>
+            <button class="btn-filled">Onlayn xarid</button>
+        </div>
+    </div>
+
+</section>
+
+<section class="promo-grid">
+
+    <!-- ROW 1 -->
+    <div class="promo-item">
+        <img src="{% static 'images/captiva-promo.png' %}" alt="Chevrolet Captiva">
+    </div>
+
+    <div class="promo-item promo-text blue">
+        <div class="promo-content">
+            <h2>Chevrolet Captiva</h2>
+            <p class="subtitle">Har bir sayohat uchun sizning mukammal hamrohingiz!</p>
+            <p>
+                Chevrolet Captiva – bu kundalik qulaylik va uzoq safarlar uchun mo‘ljallangan keng,
+                texnologik SUV. Jasur dizayn, ergonomik salon va zamonaviy funksiyalar
+                har bir safarni oson va xavfsiz qiladi.
+            </p>
+            <button class="promo-btn">Batafsil</button>
+        </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="promo-item promo-text dark">
+        <div class="promo-content">
+            <h2>Chevrolet Equinox</h2>
+            <p class="subtitle">Masofani bosib o‘tadigan ishonchlilik</p>
+            <p>
+                Equinox uzoq muddatli ishonchlilik va kuchli harakat tizimi bilan
+                sizni har qanday manzilga olib boradi.
+            </p>
+            <button class="promo-btn">Batafsil</button>
+        </div>
+    </div>
+
+    <div class="promo-item">
+        <img src="{% static 'images/equinox-promo.png' %}" alt="Chevrolet Equinox">
+    </div>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+
+    <!-- TOP FOOTER PROMO -->
+    <div class="footer-promo">
+        <div class="footer-promo-image">
+            <img src="{% static 'images/uzautosavdo.png' %}" alt="UzAutoSavdo">
+        </div>
+
+        <div class="footer-promo-text">
+            <h3>AVTOMOBIL ONLAYN SAVDOSI</h3>
+            <p>
+                Chevrolet nafaqat yangi yo‘llarni, balki yangi onlayn imkoniyatlarni ham ochadi.
+                Endi siz gavdali bo‘lishingizdan qat’iy nazar, Chevrolet’ni tanlashingiz va
+                uning egasi bo‘lishingiz mumkin.
+            </p>
+            <a href="#" class="footer-link">Batafsil →</a>
+        </div>
+    </div>
+
+
+    <!-- MAIN FOOTER LINKS -->
+    <div class="footer-links">
+
+        <div class="footer-column">
+            <h4>AVTOMOBILLAR</h4>
+            <ul>
+                <li>Chevrolet Tahoe</li>
+                <li>Chevrolet Traverse</li>
+                <li>Chevrolet Tracker</li>
+                <li>Chevrolet Onix</li>
+                <li>Chevrolet Cobalt</li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>MIJOZLAR UCHUN</h4>
+            <ul>
+                <li>Texnik reglament</li>
+                <li>Texnik xizmat qoidalari</li>
+                <li>Ehtiyot qismlar</li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>DILER</h4>
+            <ul>
+                <li>Ichki bozor</li>
+                <li>Ehtiyot qism dilerlari</li>
+                <li>Tashqi bozorlar</li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>CHEVROLET HAQIDA</h4>
+            <ul>
+                <li>Chevrolet tarixi</li>
+                <li>Kafolat davri</li>
+                <li>Doimiy beriladigan savollar</li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <!-- BOTTOM LINE -->
+    <div class="footer-bottom">
+
+        <div class="footer-left">
+            © 1996 - 2026 AO «UZAUTO MOTORS»
+        </div>
+
+        <div class="footer-social">
+            <span>f</span>
+            <span>in</span>
+            <span>yt</span>
+            <span>tg</span>
+        </div>
+
+        <div class="footer-right">
+            Together let's drive™
+        </div>
+
+    </div>
+
+</footer>
+
+
 {% endblock %}
+
+
 
 {% block scripts %}
 <script>
@@ -97,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const heroRight = document.querySelector(".hero-slider .arrow.right");
     const dotsContainer = document.querySelector(".hero-slider .dots");
 
-    if (heroSlides.length > 0) {
+    if (heroSlides.length) {
 
         let heroIndex = 0;
         let heroInterval;
@@ -107,51 +265,51 @@ document.addEventListener("DOMContentLoaded", function() {
             if (i === 0) dot.classList.add("active");
             dot.addEventListener("click", () => {
                 heroIndex = i;
-                showHero(heroIndex);
-                resetHeroAuto();
+                showHero();
+                restartHero();
             });
             dotsContainer.appendChild(dot);
         });
 
         const heroDots = document.querySelectorAll(".hero-slider .dots span");
 
-        function showHero(i) {
+        function showHero() {
             heroSlides.forEach(s => s.classList.remove("active"));
             heroDots.forEach(d => d.classList.remove("active"));
-            heroSlides[i].classList.add("active");
-            heroDots[i].classList.add("active");
+            heroSlides[heroIndex].classList.add("active");
+            heroDots[heroIndex].classList.add("active");
         }
 
         function nextHero() {
             heroIndex = (heroIndex + 1) % heroSlides.length;
-            showHero(heroIndex);
+            showHero();
         }
 
         function prevHero() {
             heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
-            showHero(heroIndex);
+            showHero();
         }
 
-        function startHeroAuto() {
+        function startHero() {
             heroInterval = setInterval(nextHero, 4000);
         }
 
-        function resetHeroAuto() {
+        function restartHero() {
             clearInterval(heroInterval);
-            startHeroAuto();
+            startHero();
         }
 
         heroRight?.addEventListener("click", () => {
             nextHero();
-            resetHeroAuto();
+            restartHero();
         });
 
         heroLeft?.addEventListener("click", () => {
             prevHero();
-            resetHeroAuto();
+            restartHero();
         });
 
-        startHeroAuto();
+        startHero();
     }
 
 
@@ -165,35 +323,65 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const carCards = document.querySelectorAll(".car-card");
         const gap = 30;
-        const cardWidth = carCards[0].offsetWidth + gap;
-
+        const visibleCards = 3;
         let carIndex = 0;
 
-        function updateCarSlider() {
-            carSlider.style.transform = `translateX(-${carIndex * cardWidth}px)`;
+        function getCardWidth() {
+            return carCards[0].offsetWidth + gap;
+        }
+
+        function updateCar() {
+            const cardWidth = getCardWidth();
+            carSlider.style.transform =
+                `translateX(-${carIndex * cardWidth}px)`;
         }
 
         carRight?.addEventListener("click", () => {
-            if (carIndex < carCards.length - 3) {
+            if (carIndex < carCards.length - visibleCards) {
                 carIndex++;
             } else {
                 carIndex = 0;
             }
-            updateCarSlider();
+            updateCar();
         });
 
         carLeft?.addEventListener("click", () => {
             if (carIndex > 0) {
                 carIndex--;
             } else {
-                carIndex = carCards.length - 3;
+                carIndex = carCards.length - visibleCards;
             }
-            updateCarSlider();
+            updateCar();
         });
+
+        window.addEventListener("resize", updateCar);
     }
+
+
+    /* ================= MODEL SWITCH ================= */
+
+    const tabs = document.querySelectorAll(".model-tabs span");
+    const modelImg = document.getElementById("modelImg");
+    const modelTitle = document.getElementById("modelTitle");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", function() {
+
+            tabs.forEach(t => t.classList.remove("active"));
+            this.classList.add("active");
+
+            const model = this.dataset.model;
+
+            if (model === "tracker") {
+                modelImg.src = "{% static 'images/tracker-big.jpg' %}";
+                modelTitle.textContent = "Chevrolet Tracker";
+            } else {
+                modelImg.src = "{% static 'images/onix-big.png' %}";
+                modelTitle.textContent = "Chevrolet Onix";
+            }
+        });
+    });
 
 });
 </script>
 {% endblock %}
-
-

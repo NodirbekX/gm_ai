@@ -1,107 +1,118 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-    <title>{% block title %}My Site{% endblock %}</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>{% block title %}UzAuto{% endblock %}</title>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 
 <body>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay"></div>
+    <!-- ===== OVERLAY ===== -->
+    <div class="overlay" id="overlay"></div>
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-        <span class="close-btn" id="closeBtn">&times;</span>
-    </div>
-
-    <ul class="sidebar-menu">
-        <li>Mijozlar uchun</li>
-        <li>Texnik reglament</li>
-        <li>Texnik xizmat qoidalari</li>
-        <li>Ehtiyot qismlar</li>
-        <hr>
-        <li>Chevrolet haqida</li>
-        <li>CHEVROLET tarixi</li>
-        <li>Kafolat davri</li>
-        <li>Doimiy beriladigan savollar</li>
-        <hr>
-        <li>Mijozlarga xizmat ko‘rsatish</li>
-        <li><strong>+99878 141 77 77</strong></li>
-    </ul>
-</div>
-
-<!-- NAVBAR -->
-<div class="top-navbar">
-
-    <div class="nav-left">
-        <div class="hamburger" id="menuBtn">
-            <span></span>
-            <span></span>
-            <span></span>
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="close-btn" id="closeBtn">&times;</button>
         </div>
 
-        <div class="nav-links">
-            <a href="#">Avtomobillar</a>
-            <a href="#">Dilerlar</a>
+        <ul class="sidebar-menu">
+            <li>Mijozlar uchun</li>
+            <li>Texnik reglament</li>
+            <li>Texnik xizmat qoidalari</li>
+            <li>Ehtiyot qismlar</li>
+
+            <hr>
+
+            <li>Chevrolet haqida</li>
+            <li>CHEVROLET tarixi</li>
+            <li>Kafolat davri</li>
+            <li>Doimiy beriladigan savollar</li>
+
+            <hr>
+
+            <li>Mijozlarga xizmat ko‘rsatish</li>
+            <li><strong>+998 78 141 77 77</strong></li>
+        </ul>
+    </aside>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="top-navbar">
+
+        <div class="nav-left">
+            <div class="hamburger" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#">Avtomobillar</a>
+                <a href="#">Dilerlar</a>
+            </nav>
         </div>
-    </div>
 
-    <div class="nav-center">
-        <img src="{% static 'images/uzavtologo.png' %}" alt="UzAuto">
-    </div>
-
-    <div class="nav-right">
-        <div class="lang">
-            <a href="#">RU</a>
-            <a href="#"><u>UZ</u></a>
+        <div class="nav-center">
+            <img src="{% static 'images/uzavtologo.png' %}" alt="UzAuto Motors">
         </div>
 
-        <div class="icon-circle">🔍</div>
-        <div class="icon-circle">👤</div>
+        <div class="nav-right">
+            <div class="lang">
+                <a href="#">RU</a>
+                <a href="#"><u>UZ</u></a>
+            </div>
 
-        <a href="#" class="login-link">Kirish</a>
-    </div>
+            <div class="icon-circle">🔍</div>
+            <div class="icon-circle">👤</div>
 
-</div>
+            <a href="#" class="login-link">Kirish</a>
+        </div>
 
-<!-- MAIN CONTENT -->
-<div class="main-content">
-    {% block content %}{% endblock %}
-</div>
-{% block scripts %}{% endblock %}
+    </header>
 
-<!-- JS MUST BE AT BOTTOM -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
 
-    const menuBtn = document.getElementById("menuBtn");
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("overlay");
-    const closeBtn = document.getElementById("closeBtn");
+    {% block scripts %}{% endblock %}
 
-    menuBtn.addEventListener("click", function() {
-        sidebar.classList.add("active");
-        overlay.classList.add("active");
-        document.body.style.overflow = "hidden";
-    });
+    <!-- ===== GLOBAL JS ===== -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
 
-    closeBtn.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
+            const menuBtn  = document.getElementById("menuBtn");
+            const sidebar  = document.getElementById("sidebar");
+            const overlay  = document.getElementById("overlay");
+            const closeBtn = document.getElementById("closeBtn");
 
-    function closeSidebar() {
-        sidebar.classList.remove("active");
-        overlay.classList.remove("active");
-        document.body.style.overflow = "auto";
-    }
+            if (!menuBtn || !sidebar || !overlay) return;
 
-});
-</script>
+            function openSidebar() {
+                sidebar.classList.add("active");
+                overlay.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove("active");
+                overlay.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+
+            menuBtn.addEventListener("click", openSidebar);
+            overlay.addEventListener("click", closeSidebar);
+            closeBtn?.addEventListener("click", closeSidebar);
+
+        });
+    </script>
 
 </body>
 </html>
