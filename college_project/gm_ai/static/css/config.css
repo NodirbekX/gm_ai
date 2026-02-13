@@ -310,3 +310,28 @@
     text-decoration: underline;
 }
 
+.buy-section {
+    margin-top: 25px;
+}
+
+.buy-btn {
+    width: 100%;
+    padding: 16px;
+    background: #0b3c5d;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.buy-btn:hover {
+    background: #092c45;
+    transform: translateY(-2px);
+}
+
+.buy-btn:active {
+    transform: translateY(0);
+}
