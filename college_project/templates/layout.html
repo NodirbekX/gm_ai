@@ -72,7 +72,11 @@
             <div class="icon-circle">🔍</div>
             <div class="icon-circle">👤</div>
 
-            <a href="#" class="login-link">Kirish</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="login-link">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-link">Kirish</a>
+            {% endif %}
         </div>
 
     </header>
