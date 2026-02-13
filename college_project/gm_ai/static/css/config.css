@@ -1,3 +1,11 @@
+/* ================= MAIN CONFIG LAYOUT ================= */
+
+.config-page {
+    width: 100%;
+    background: #f5f6f8;
+    padding: 0;
+}
+
 .config-wrapper {
     width: 100%;
     display: flex;
@@ -6,26 +14,28 @@
     background: #f5f6f8;
 }
 
+.config-container {
+    display: flex;
+    gap: 50px;
+    margin: 0 60px;
+}
+
+/* LEFT SIDE (55%) */
 .config-left {
     flex: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .config-left img {
+    display: block;
+    margin: 0 auto;
     width: 100%;
-    max-width: 700px;
+    max-width: 900px; /* MAIN BIG IMAGE */
 }
 
-.car-image-box {
-    background: #fff;
-    border-radius: 14px;
-    padding: 40px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-}
-
-.car-image-box img {
-    width: 100%;
-}
-
+/* RIGHT SIDE (45%) */
 .config-right {
     flex: 1;
     max-width: 520px;
@@ -46,24 +56,16 @@
     margin-bottom: 20px;
 }
 
-.config-page {
-    width: 100%;
-    background: #f5f6f8;
-    padding: 40px 0;
-}
+/* ================= CARD BOX ================= */
 
-.config-container {
-    display: flex;
-    gap: 50px;
-}
-
-.config-box,
 .card-box {
     background: #fff;
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
 }
+
+/* ================= SPECS ================= */
 
 .car-specs {
     margin-top: 30px;
@@ -88,6 +90,8 @@
     margin-bottom: 6px;
 }
 
+/* ================= TABS ================= */
+
 .config-tabs {
     display: flex;
     border-bottom: 1px solid #ddd;
@@ -106,6 +110,8 @@
     border-bottom: 3px solid #0b3c5d;
 }
 
+/* ================= MOD OPTIONS ================= */
+
 .mod-option {
     display: flex;
     justify-content: space-between;
@@ -119,6 +125,8 @@
 .mod-option.active {
     border: 2px solid #0b3c5d;
 }
+
+/* ================= COLORS ================= */
 
 .color-grid {
     display: flex;
@@ -145,6 +153,8 @@
     margin-top: 10px;
 }
 
+/* ================= DEALER ================= */
+
 .dealer-tabs {
     display: flex;
     background: #f1f1f1;
@@ -165,7 +175,6 @@
     color: #0b3c5d;
 }
 
-
 /* ================= TECH SECTION ================= */
 
 .tech-section {
@@ -173,7 +182,6 @@
     background: #f5f6f8;
 }
 
-/* Header */
 .tech-header {
     background: #ffffff;
     border-radius: 14px;
@@ -217,7 +225,8 @@
     text-decoration: none;
 }
 
-/* Content Layout */
+/* TECH CONTENT */
+
 .tech-content {
     background: #ffffff;
     border-radius: 14px;
@@ -226,7 +235,6 @@
     gap: 40px;
 }
 
-/* Left Menu */
 .tech-menu {
     width: 260px;
     display: flex;
@@ -247,18 +255,38 @@
     color: #fff;
 }
 
-/* Right Content */
 .tech-display {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .tech-display img {
-    max-width: 400px;
-    margin-bottom: 20px;
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 100%;
+    max-width: 300px; /* smaller than main image */
 }
 
 .tech-display p {
     font-size: 14px;
     color: #555;
     line-height: 1.6;
+}
+
+/* LEFT SIDE – 60% */
+.config-left {
+    flex: 0 0 60%;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* RIGHT SIDE – 40% */
+.config-right {
+    flex: 0 0 40%;
+    max-width: 40%;
 }
