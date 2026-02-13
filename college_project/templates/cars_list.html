@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="models-page">
+
+    <div class="models-header">
+        <h1>MODELLAR RO'YXATI</h1>
+        <p>
+            Hududingizdagi dilerlar zaxirasida mavjud avtomobillar bilan tanishing.
+            Bu yerda Siz modifikatsiyalar tavsifi va joriy narxlarni topishingiz,
+            shuningdek o‘zingizga yoqqan avtomobilni bir necha klik orqali rasmiylashtirishingiz mumkin.
+        </p>
+    </div>
+
+    <div class="models-grid">
+
+        <!-- DAMAS -->
+        <div class="model-card">
+            <img src="{% static 'images/models/damas.png' %}" alt="Damas">
+
+            <h3>DAMAS-2</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>96,932,000 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>38 o.k.</div>
+                <div>5 MT</div>
+            </div>
+
+            <a href="#" class="btn-model">Batafsil</a>
+        </div>
+
+
+        <!-- LABO -->
+        <div class="model-card">
+            <img src="{% static 'images/models/labo.png' %}" alt="Labo">
+
+            <h3>LABO</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>96,370,000 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>38 o.k.</div>
+                <div>5 MT</div>
+            </div>
+
+            <a href="#" class="btn-model">Batafsil</a>
+        </div>
+
+
+        <!-- ONIX -->
+        <div class="model-card">
+            <img src="{% static 'images/models/onix.png' %}" alt="Onix">
+
+            <h3>ONIX</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>161,900,000 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>90 / 132 o.k.</div>
+                <div>5MT / 6AT</div>
+            </div>
+
+            <a href="#" class="btn-model">Batafsil</a>
+        </div>
+
+
+        <!-- TRACKER -->
+        <div class="model-card">
+            <img src="{% static 'images/models/tracker.png' %}" alt="Tracker">
+
+            <h3>TRACKER-2</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>215,951,360 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>132 o.k.</div>
+                <div>6AT</div>
+            </div>
+
+            <a href="#" class="btn-model">Batafsil</a>
+        </div>
+
+
+        <!-- CAPTIVA -->
+        <div class="model-card">
+            <img src="{% static 'images/captiva/captiva-list.png' %}" alt="Captiva">
+
+            <h3>CAPTIVA</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>304,900,000 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>149 o.k.</div>
+                <div>CVT</div>
+            </div>
+
+        <a href="{% url 'captiva_config' %}" class="btn-model">
+    Batafsil
+</a>
+        </div>
+
+
+        <!-- TRAVERSE -->
+        <div class="model-card">
+            <img src="{% static 'images/models/traverse.png' %}" alt="Traverse">
+
+            <h3>TRAVERSE</h3>
+
+            <div class="price-row">
+                <span>Boshlang'ich narxi</span>
+                <strong>795,000,000 so'm</strong>
+            </div>
+
+            <div class="spec-row">
+                <div>328 o.k.</div>
+                <div>AT-8</div>
+            </div>
+
+            <a href="#" class="btn-model">Batafsil</a>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

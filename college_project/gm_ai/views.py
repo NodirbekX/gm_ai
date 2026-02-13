@@ -53,6 +53,10 @@ def logout_view(request):
     logout(request)
     return redirect("home")
 
+#all cars
+def cars_list(request):
+    return render(request, 'cars_list.html')
+
 #Captiva
 def captiva_detail(request):
     return render(request, 'models/captiva.html')
@@ -62,3 +66,7 @@ def tracker_detail(request):
 
 def onix_detail(request):
     return render(request, 'models/onix.html')
+
+def captiva_config(request):
+    return render(request, 'models/captiva_config.html')
+

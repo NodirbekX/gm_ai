@@ -1,0 +1,264 @@
+.config-wrapper {
+    width: 100%;
+    display: flex;
+    gap: 80px;
+    padding: 0 100px;
+    background: #f5f6f8;
+}
+
+.config-left {
+    flex: 1.6;
+}
+
+.config-left img {
+    width: 100%;
+    max-width: 700px;
+}
+
+.car-image-box {
+    background: #fff;
+    border-radius: 14px;
+    padding: 40px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.car-image-box img {
+    width: 100%;
+}
+
+.config-right {
+    flex: 1;
+    max-width: 520px;
+}
+
+.config-right h2 {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.config-title {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.config-page {
+    width: 100%;
+    background: #f5f6f8;
+    padding: 40px 0;
+}
+
+.config-container {
+    display: flex;
+    gap: 50px;
+}
+
+.config-box,
+.card-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.car-specs {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.car-specs div,
+.spec-item {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.car-specs span,
+.spec-item span {
+    display: block;
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.config-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #777;
+}
+
+.tab.active {
+    color: #0b3c5d;
+    border-bottom: 3px solid #0b3c5d;
+}
+
+.mod-option {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.mod-option.active {
+    border: 2px solid #0b3c5d;
+}
+
+.color-grid {
+    display: flex;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.color-box {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    border: 3px solid transparent;
+    cursor: pointer;
+}
+
+.color-box.active {
+    border: 3px solid #0b3c5d;
+}
+
+.color-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-top: 10px;
+}
+
+.dealer-tabs {
+    display: flex;
+    background: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dealer-tab {
+    flex: 1;
+    text-align: center;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.dealer-tab.active {
+    background: #fff;
+    font-weight: 600;
+    color: #0b3c5d;
+}
+
+
+/* ================= TECH SECTION ================= */
+
+.tech-section {
+    margin-top: 40px;
+    background: #f5f6f8;
+}
+
+/* Header */
+.tech-header {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.tech-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tech-title h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.tech-title p {
+    margin: 3px 0 0;
+    font-size: 13px;
+    color: #777;
+}
+
+.tech-icon {
+    background: #eef3f8;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.download-btn {
+    background: #0b3c5d;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/* Content Layout */
+.tech-content {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+}
+
+/* Left Menu */
+.tech-menu {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tech-tab {
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #f1f3f5;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.tech-tab.active {
+    background: #0b3c5d;
+    color: #fff;
+}
+
+/* Right Content */
+.tech-display {
+    flex: 1;
+}
+
+.tech-display img {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.tech-display p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}

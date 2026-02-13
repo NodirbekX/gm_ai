@@ -1,0 +1,180 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="config-page">
+
+<div class="config-container">
+
+    <!-- LEFT SIDE -->
+    <div class="config-left">
+
+        <img id="mainCar"
+             src="{% static 'images/captiva/captiva_black.png' %}"
+             alt="Captiva">
+
+        <!-- SPECS -->
+        <div class="car-specs">
+            <div><span>Dvigatel quvvati</span><strong>149 o.k.</strong></div>
+            <div><span>0-100 km/soat</span><strong>13,6 sek</strong></div>
+            <div><span>100 km yoqilg‘i</span><strong>11,6 L</strong></div>
+            <div><span>Uzatmalar qutisi</span><strong>CVT</strong></div>
+        </div>
+        <!-- ================= TECHNICAL FEATURES ================= -->
+
+<section class="tech-section">
+
+    <!-- Top Bar -->
+    <div class="tech-header">
+        <div class="tech-title">
+            <div class="tech-icon">📄</div>
+            <div>
+                <h3>Texnik xususiyatlar</h3>
+                <p>Texnik xususiyatlar, komplektatsiya va hujjatlar</p>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">
+            ⬇ Xarakteristikani yuklash
+        </a>
+    </div>
+
+
+    <!-- Content -->
+    <div class="tech-content">
+
+        <!-- Left Menu -->
+        <div class="tech-menu">
+
+            <div class="tech-tab active">Tasvir</div>
+            <div class="tech-tab">Eksteryer</div>
+            <div class="tech-tab">Interyer</div>
+            <div class="tech-tab">Xavfsizlik</div>
+            <div class="tech-tab">Multimedia va texnologiyalar</div>
+
+        </div>
+
+        <!-- Right Content -->
+        <div class="tech-display">
+
+            <img src="{% static 'images/captiva/captiva_gray.png' %}" alt="Captiva">
+
+            <p>
+                Krossoverning flagman modifikatsiyasi keng, texnologik va premium
+                qulayliklarni birlashtiradi. 7 o‘rindiqli salon, panoramali tom,
+                nafas oluvchi ekocharmlik salon qoplamasi va maksimal opsiyalar
+                ushbu modifikatsiyani katta oila va obro‘-e’tibor qadrlaydiganlar
+                uchun ideal tanlovga aylantiradi.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="config-right">
+
+        <h2>CAPTIVA</h2>
+        <p class="subtitle">Modifikatsiya va rangni tanlang</p>
+
+        <!-- TABS -->
+        <div class="config-tabs">
+            <div class="tab active">Konfiguratsiya</div>
+            <div class="tab">Muddatli to‘lov kalkulyatori</div>
+        </div>
+
+        <!-- MODIFICATION -->
+        <div class="card-box">
+
+            <h4>Modifikatsiya</h4>
+
+            <div class="mod-option">
+                <span>LT 2</span>
+                <strong>304,900,000 so'm</strong>
+            </div>
+
+            <div class="mod-option active">
+                <span>PREMIER</span>
+                <strong>334,900,000 so'm</strong>
+            </div>
+
+        </div>
+
+        <!-- COLORS -->
+        <div class="card-box">
+
+            <h4>Rangni tanlang</h4>
+
+            <div class="color-grid">
+
+                <div class="color-box active"
+                     data-name="Black"
+                     data-img="{% static 'images/captiva/captiva_black.png' %}"
+                     style="background:#000;"></div>
+
+                <div class="color-box"
+                     data-name="Red"
+                     data-img="{% static 'images/captiva/captiva_red.png' %}"
+                     style="background:#d20f2a;"></div>
+
+                <div class="color-box"
+                     data-name="Gray"
+                     data-img="{% static 'images/captiva/captiva_gray.png' %}"
+                     style="background:#6f7a86;"></div>
+
+                <div class="color-box"
+                     data-name="White"
+                     data-img="{% static 'images/captiva/captiva_white.png' %}"
+                     style="background:#dcdcdc;"></div>
+
+            </div>
+
+            <p class="color-name" id="colorName">Black</p>
+
+        </div>
+
+        <!-- DEALER -->
+        <div class="card-box">
+
+            <h4>Hudud va dilerini tanlang</h4>
+
+            <div class="dealer-tabs">
+                <div class="dealer-tab active">Xarita</div>
+                <div class="dealer-tab">Ro'yxat</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+const colors = document.querySelectorAll(".color-box");
+const car = document.getElementById("mainCar");
+const colorName = document.getElementById("colorName");
+
+colors.forEach(color => {
+    color.addEventListener("click", function(){
+
+        colors.forEach(c => c.classList.remove("active"));
+        this.classList.add("active");
+
+        car.src = this.dataset.img;
+        colorName.innerText = this.dataset.name;
+    });
+});
+</script>
+
+{% endblock %}

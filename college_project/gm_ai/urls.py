@@ -15,4 +15,9 @@ urlpatterns = [
     path('model/captiva/', views.captiva_detail, name='captiva_detail'),
     path('model/tracker/', views.tracker_detail, name='tracker_detail'),
     path('model/onix/', views.onix_detail, name='onix_detail'),
+
+    #avtomobillar
+    path('avtomobillar/', views.cars_list, name='cars_list'),
+    path('avtomobillar/captiva/', views.captiva_config, name='captiva_config'),
+
 ]
