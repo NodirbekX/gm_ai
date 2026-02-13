@@ -7,7 +7,7 @@
 
 <section class="model-hero">
 
-    <img src="{% static 'images/captiva-hero.png' %}" alt="Captiva">
+    <img src="{% static 'images/captiva/captiva-hero.png' %}" alt="Captiva">
 
 </section>
 
@@ -78,26 +78,35 @@
 
     </div>
 
-    <!-- CAR IMAGE -->
-    <div class="model-image-wrapper">
-        <img src="{% static 'images/captiva_black.png' %}" alt="Captiva">
+<!-- CAR IMAGE -->
+<div class="model-image-wrapper">
+    <img id="carImage" src="{% static 'images/captiva/captiva_black.png' %}" alt="Captiva">
+</div>
+
+<!-- COLOR SELECT -->
+<div class="color-section">
+
+    <div class="color-dots">
+        <span class="color gray"
+              data-img="{% static 'images/captiva/captiva_gray.png' %}"></span>
+
+        <span class="color black active"
+              data-img="{% static 'images/captiva/captiva_black.png' %}"></span>
+
+        <span class="color silver"
+              data-img="{% static 'images/captiva/captiva_silver.png' %}"></span>
+
+        <span class="color white"
+              data-img="{% static 'images/captiva/captiva_white.png' %}"></span>
+
+        <span class="color red"
+              data-img="{% static 'images/captiva/captiva_red.png' %}"></span>
     </div>
 
-    <!-- COLOR SELECT -->
-    <div class="color-section">
+    <p>Rangni tanlang</p>
+    <small>* Dilerning bilan ranglarning mavjudligini tekshiring</small>
 
-        <div class="color-dots">
-            <span class="color gray"></span>
-            <span class="color black active"></span>
-            <span class="color silver"></span>
-            <span class="color white"></span>
-            <span class="color red"></span>
-        </div>
-
-        <p>Rangni tanlang</p>
-        <small>* Dilerning bilan ranglarning mavjudligini tekshiring</small>
-
-    </div>
+</div>
 
     <!-- BUTTONS -->
     <div class="model-buttons">
@@ -119,7 +128,7 @@
 
         <!-- LT1 -->
         <div class="config-card">
-            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+            <img src="{% static 'images/captiva/captiva-lt1.png' %}" alt="LT1">
 
             <h3>LT1</h3>
 
@@ -140,7 +149,7 @@
 
         <!-- LT2 -->
         <div class="config-card">
-            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+            <img src="{% static 'images/captiva/captiva-lt1.png' %}" alt="LT1">
 
             <h3>LT2</h3>
 
@@ -160,7 +169,7 @@
 
         <!-- PREMIER -->
         <div class="config-card">
-            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+            <img src="{% static 'images/captiva/captiva-lt1.png' %}" alt="LT1">
 
             <h3>PREMIER</h3>
 
@@ -184,9 +193,36 @@
 
 <section class="model-hero">
 
-    <img src="{% static 'images/captiva-footer.png' %}" alt="Captiva">
+    <img src="{% static 'images/captiva/captiva-footer.png' %}" alt="Captiva">
 
 </section>
 
+{% block scripts %}
+
+
+<script>
+    /* ================= COLOR SWITCH ================= */
+
+const colorDots = document.querySelectorAll(".color");
+const carImage = document.getElementById("carImage");
+
+colorDots.forEach(dot => {
+    dot.addEventListener("click", function () {
+
+        // Remove active from all
+        colorDots.forEach(d => d.classList.remove("active"));
+
+        // Add active to clicked
+        this.classList.add("active");
+
+        // Change image
+        const newImage = this.getAttribute("data-img");
+        carImage.src = newImage;
+    });
+});
+
+</script>
+
+{% endblock %}
 
 {% endblock %}
