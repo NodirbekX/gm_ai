@@ -18,6 +18,7 @@
     display: flex;
     gap: 50px;
     margin: 0 60px;
+    margin-left: 0;
 }
 
 /* LEFT SIDE (55%) */
@@ -290,3 +291,22 @@
     flex: 0 0 40%;
     max-width: 40%;
 }
+
+.config-back {
+    padding: 20px 60px;
+    font-size: 14px;
+}
+
+.config-back a {
+    text-decoration: none;
+    color: #0b3c5d;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.config-back a:hover {
+    text-decoration: underline;
+}
+

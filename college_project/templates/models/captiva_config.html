@@ -4,7 +4,11 @@
 {% block content %}
 
 <section class="config-page">
-
+    <div class="config-back">
+        <a href="{% url 'cars_list' %}">
+            ← Ro'yxatga qaytish
+        </a>
+    </div>
 <div class="config-container">
 
     <!-- LEFT SIDE -->
@@ -91,19 +95,21 @@
         <!-- MODIFICATION -->
         <div class="card-box">
 
-            <h4>Modifikatsiya</h4>
+    <h4>Modifikatsiya</h4>
 
-            <div class="mod-option">
-                <span>LT 2</span>
-                <strong>304,900,000 so'm</strong>
-            </div>
+    <div class="mod-option"
+         data-model="lt2">
+        <span>LT 2</span>
+        <strong>304,900,000 so'm</strong>
+    </div>
 
-            <div class="mod-option active">
-                <span>PREMIER</span>
-                <strong>334,900,000 so'm</strong>
-            </div>
+    <div class="mod-option active"
+         data-model="premier">
+        <span>PREMIER</span>
+        <strong>334,900,000 so'm</strong>
+    </div>
 
-        </div>
+</div>
 
         <!-- COLORS -->
         <div class="card-box">
@@ -112,41 +118,45 @@
 
             <div class="color-grid">
 
-                <div class="color-box active"
-                     data-name="Black"
-                     data-img="{% static 'images/captiva/captiva_black.png' %}"
-                     style="background:#000;"></div>
+    <!-- WHITE (Available for LT2 + Premier) -->
+    <div class="color-box active"
+         data-name="White"
+         data-models="lt2,premier"
+         data-img="{% static 'images/captiva/captiva_white.png' %}"
+         style="background:#dcdcdc;">
+    </div>
 
-                <div class="color-box"
-                     data-name="Red"
-                     data-img="{% static 'images/captiva/captiva_red.png' %}"
-                     style="background:#d20f2a;"></div>
+    <!-- BLACK (Premier only) -->
+    <div class="color-box"
+         data-name="Black"
+         data-models="premier"
+         data-img="{% static 'images/captiva/captiva_black.png' %}"
+         style="background:#000;">
+    </div>
 
-                <div class="color-box"
-                     data-name="Gray"
-                     data-img="{% static 'images/captiva/captiva_gray.png' %}"
-                     style="background:#6f7a86;"></div>
+    <!-- RED (Premier only) -->
+    <div class="color-box"
+         data-name="Red"
+         data-models="premier"
+         data-img="{% static 'images/captiva/captiva_red.png' %}"
+         style="background:#d20f2a;">
+    </div>
 
-                <div class="color-box"
-                     data-name="White"
-                     data-img="{% static 'images/captiva/captiva_white.png' %}"
-                     style="background:#dcdcdc;"></div>
+    <!-- GRAY (Premier only) -->
+    <div class="color-box"
+         data-name="Gray"
+         data-models="premier"
+         data-img="{% static 'images/captiva/captiva_gray.png' %}"
+         style="background:#6f7a86;">
+    </div>
 
-            </div>
+</div>
 
-            <p class="color-name" id="colorName">Black</p>
+<p class="color-name" id="colorName">White</p>
 
-        </div>
 
         <!-- DEALER -->
         <div class="card-box">
-
-            <h4>Hudud va dilerini tanlang</h4>
-
-            <div class="dealer-tabs">
-                <div class="dealer-tab active">Xarita</div>
-                <div class="dealer-tab">Ro'yxat</div>
-            </div>
 
         </div>
 
@@ -161,12 +171,71 @@
 {% block scripts %}
 
 <script>
+
 const colors = document.querySelectorAll(".color-box");
+const mods = document.querySelectorAll(".mod-option");
 const car = document.getElementById("mainCar");
 const colorName = document.getElementById("colorName");
 
+let currentModel = "premier";
+
+/* ================= MODIFICATION SWITCH ================= */
+
+mods.forEach(mod => {
+    mod.addEventListener("click", function(){
+
+        mods.forEach(m => m.classList.remove("active"));
+        this.classList.add("active");
+
+        currentModel = this.dataset.model;
+
+        updateColors();
+    });
+});
+
+/* ================= UPDATE COLORS ================= */
+
+function updateColors() {
+
+    let firstAvailable = null;
+
+    colors.forEach(color => {
+
+        const allowedModels = color.dataset.models.split(",");
+
+        if (allowedModels.includes(currentModel)) {
+
+            color.style.display = "block";
+
+            if (!firstAvailable) {
+                firstAvailable = color;
+            }
+
+        } else {
+
+            color.style.display = "none";
+            color.classList.remove("active");
+
+        }
+    });
+
+    // Auto select first available color
+    if (firstAvailable) {
+
+        colors.forEach(c => c.classList.remove("active"));
+        firstAvailable.classList.add("active");
+
+        car.src = firstAvailable.dataset.img;
+        colorName.innerText = firstAvailable.dataset.name;
+    }
+}
+
+/* ================= COLOR CLICK ================= */
+
 colors.forEach(color => {
     color.addEventListener("click", function(){
+
+        if (this.style.display === "none") return;
 
         colors.forEach(c => c.classList.remove("active"));
         this.classList.add("active");
@@ -175,6 +244,8 @@ colors.forEach(color => {
         colorName.innerText = this.dataset.name;
     });
 });
+
 </script>
+
 
 {% endblock %}
