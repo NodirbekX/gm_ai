@@ -157,10 +157,12 @@
 
         <!-- DEALER -->
         <div class="card-box">
-            <div class="buy-section">
-    <button class="buy-btn">
-        Xarid qilmoq
-    </button>
+        <form method="POST" action="{% url 'buy_car' %}">
+    {% csrf_token %}
+    <input type="hidden" name="model" value="Captiva">
+    <button type="submit" class="btn-buy">Xarid qilmoq</button>
+</form>
+
 </div>
 
         </div>

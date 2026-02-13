@@ -83,3 +83,47 @@ def onix_detail(request):
 def captiva_config(request):
     return render(request, 'models/captiva_config.html')
 
+#buy view
+
+from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import FileResponse
+from docx import Document
+import os
+from datetime import datetime
+
+
+@login_required
+def buy_car(request):
+    if request.method == "POST":
+
+        user = request.user
+        model = request.POST.get("model")
+
+        # Create document
+        document = Document()
+
+        document.add_heading('AVTOMOBIL SOTIB OLISH SHARTNOMASI', level=1)
+
+        document.add_paragraph(f"Sana: {datetime.now().strftime('%d.%m.%Y')}")
+        document.add_paragraph("")
+
+        document.add_paragraph(f"Xaridor: {user.full_name}")
+        document.add_paragraph(f"Passport ID: {user.passport_id}")
+        document.add_paragraph(f"Telefon: {user.phone}")
+        document.add_paragraph(f"Manzil: {user.permanent_address}")
+        document.add_paragraph("")
+        document.add_paragraph(f"Sotib olinayotgan avtomobil: Chevrolet {model}")
+        document.add_paragraph("")
+        document.add_paragraph("Tomonlar yuqoridagi ma’lumotlarga asosan shartnoma tuzdilar.")
+
+        # Save file
+        filename = f"{user.username}_{model}_{datetime.now().timestamp()}.docx"
+        filepath = os.path.join(settings.MEDIA_ROOT, "contracts", filename)
+
+        document.save(filepath)
+
+        return FileResponse(open(filepath, 'rb'), as_attachment=True)
+
+    return redirect("home")
