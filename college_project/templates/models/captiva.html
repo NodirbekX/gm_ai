@@ -1,0 +1,192 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO BANNER ================= -->
+
+<section class="model-hero">
+
+    <img src="{% static 'images/captiva-hero.png' %}" alt="Captiva">
+
+</section>
+
+
+<section class="model-detail">
+
+    <!-- TOP BAR -->
+    <div class="model-header">
+        <h2>Captiva</h2>
+        <h3 class="model-price">
+            Chegirmadagi narx 284 900 000 so'mdan
+        </h3>
+    </div>
+
+    <!-- SPECS -->
+    <div class="model-specs">
+
+        <div class="spec">
+            <strong>1.5T</strong>
+            <span>DVIGATEL</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>CVT Variator</strong>
+            <span>UZATMALAR QUTISI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>275/538 L</strong>
+            <span>YUKXONA HAJMI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>149 ot kuchi</strong>
+            <span>MAKSIMAL QUVVAT</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>11,6 L</strong>
+            <span>YOQILGI SARFI</span>
+        </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="model-description">
+
+        <h1>
+            KENGLIK, ISHONCH VA TEXNOLOGIYA – OILAVIY SUV’DAN
+            KUTGANINGIZNING BARCHASI
+        </h1>
+
+        <p>
+            Chevrolet Captiva – bu kundalik qulaylik va uzoq safarlar uchun
+            mo‘ljallangan keng, texnologik SUV. Old g‘ildirakdan tortish,
+            turbomotor va silliq CVT uzatmalar qutisi bilan Captiva
+            haydovchi uchun muvozanatli samaradorlik va boshqaruvni
+            taqdim etadi.
+        </p>
+
+    </div>
+
+    <!-- CAR IMAGE -->
+    <div class="model-image-wrapper">
+        <img src="{% static 'images/captiva_black.png' %}" alt="Captiva">
+    </div>
+
+    <!-- COLOR SELECT -->
+    <div class="color-section">
+
+        <div class="color-dots">
+            <span class="color gray"></span>
+            <span class="color black active"></span>
+            <span class="color silver"></span>
+            <span class="color white"></span>
+            <span class="color red"></span>
+        </div>
+
+        <p>Rangni tanlang</p>
+        <small>* Dilerning bilan ranglarning mavjudligini tekshiring</small>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="model-buttons">
+
+        <button class="btn-outline">Praysni yuklab olish</button>
+        <button class="btn-outline">Brosyura</button>
+        <button class="btn-filled">Onlayn xarid qilish</button>
+
+    </div>
+
+</section>
+<!-- ================= KOMPLEKTATSIYALAR ================= -->
+
+<section class="config-section">
+
+    <h2 class="config-title">KOMPLEKTATSIYALAR</h2>
+
+    <div class="config-grid">
+
+        <!-- LT1 -->
+        <div class="config-card">
+            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+
+            <h3>LT1</h3>
+
+            <hr>
+
+            <ul>
+                <li>Old galogen faralar</li>
+                <li>Interyerning perforatsiyasiz charm qoplamasi</li>
+                <li>Interyerning charm qoplamasi</li>
+                <li>Dinamiklar (4)</li>
+                <li>Orqa ko‘rish kamerasi</li>
+                <li>Old o‘rindiqlar mexanik moslashuvi</li>
+                <li>5 o‘rinli konfiguratsiya</li>
+                <li>Havo sovutgich</li>
+                <li>Qo‘l tormozi</li>
+            </ul>
+        </div>
+
+        <!-- LT2 -->
+        <div class="config-card">
+            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+
+            <h3>LT2</h3>
+
+            <hr>
+
+            <ul>
+                <li>Dinamiklar (4)</li>
+                <li>Orqa ko‘rish kamerasi</li>
+                <li>Qo‘l tormozi</li>
+                <li>Sun’iy charm qoplamasi</li>
+                <li>7 o‘rinli konfiguratsiya</li>
+                <li>Havo sovutgich</li>
+                <li>Orqa to‘xtash tizimi</li>
+                <li>Old galogen faralar</li>
+            </ul>
+        </div>
+
+        <!-- PREMIER -->
+        <div class="config-card">
+            <img src="{% static 'images/captiva-lt1.png' %}" alt="LT1">
+
+            <h3>PREMIER</h3>
+
+            <hr>
+
+            <ul>
+                <li>Orqa ko‘rish kamerasi</li>
+                <li>Yorug‘lik sensori</li>
+                <li>Elektron moslashuv</li>
+                <li>Qo‘shimcha USB port</li>
+                <li>6 ta dinamik</li>
+                <li>360° kamera</li>
+                <li>Old LED faralar</li>
+                <li>Harorat nazorati</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="model-hero">
+
+    <img src="{% static 'images/captiva-footer.png' %}" alt="Captiva">
+
+</section>
+
+
+{% endblock %}

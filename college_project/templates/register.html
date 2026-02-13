@@ -2,21 +2,27 @@
 {% block content %}
 
 <div class="auth-container">
-    <h2>Register</h2>
+    <div class="auth-box">
 
-    {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-    {% endfor %}
+        <h2>Register</h2>
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
-    </form>
+        {% for message in messages %}
+            <div class="auth-message">{{ message }}</div>
+        {% endfor %}
 
-    <p>Already have account? <a href="{% url 'login' %}">Login</a></p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already have account?
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+
+    </div>
 </div>
 
 {% endblock %}

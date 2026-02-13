@@ -52,3 +52,13 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+#Captiva
+def captiva_detail(request):
+    return render(request, 'models/captiva.html')
+
+def tracker_detail(request):
+    return render(request, 'models/tracker.html')
+
+def onix_detail(request):
+    return render(request, 'models/onix.html')
