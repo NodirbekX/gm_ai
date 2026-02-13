@@ -7,25 +7,38 @@ def home(request):
     return render(request, 'home.html')
 
 # REGISTER
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate, login
+from .models import CustomUser
+
+
 def register_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Username already exists")
+        username = request.POST.get("login")
+        full_name = request.POST.get("full_name")
+        phone = request.POST.get("phone")
+        passport_id = request.POST.get("passport_id")
+        permanent_address = request.POST.get("permanent_address")
+        password = request.POST.get("password")
+
+        if CustomUser.objects.filter(username=username).exists():
+            messages.error(request, "Bu login band!")
             return redirect("register")
 
-        user = User.objects.create_user(
+        CustomUser.objects.create(
             username=username,
-            email=email,
-            password=password
+            full_name=full_name,
+            phone=phone,
+            passport_id=passport_id,
+            permanent_address=permanent_address,
+            password=make_password(password)
         )
-        user.save()
 
-        login(request, user)
-        return redirect("home")
+        messages.success(request, "Ro'yxatdan o'tdingiz! Login qiling.")
+        return redirect("login")
 
     return render(request, "register.html")
 
@@ -33,8 +46,9 @@ def register_view(request):
 # LOGIN
 def login_view(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
+
+        username = request.POST.get("login")
+        password = request.POST.get("password")
 
         user = authenticate(request, username=username, password=password)
 
@@ -42,8 +56,7 @@ def login_view(request):
             login(request, user)
             return redirect("home")
         else:
-            messages.error(request, "Invalid username or password")
-            return redirect("login")
+            messages.error(request, "Login yoki parol noto‘g‘ri!")
 
     return render(request, "login.html")
 

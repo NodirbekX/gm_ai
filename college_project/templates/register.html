@@ -4,7 +4,7 @@
 <div class="auth-container">
     <div class="auth-box">
 
-        <h2>Register</h2>
+        <h2>Ro'yxatdan o'tish</h2>
 
         {% for message in messages %}
             <div class="auth-message">{{ message }}</div>
@@ -12,13 +12,18 @@
 
         <form method="POST">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Register</button>
+
+            <input type="text" name="full_name" placeholder="To'liq ism" required>
+            <input type="text" name="phone" placeholder="Telefon raqam" required>
+            <input type="text" name="passport_id" placeholder="Passport ID" required>
+            <input type="text" name="permanent_address" placeholder="Doimiy manzil" required>
+            <input type="text" name="login" placeholder="Login" required>
+            <input type="password" name="password" placeholder="Parol" required>
+
+            <button type="submit">Ro'yxatdan o'tish</button>
         </form>
 
-        <p>Already have account?
+        <p>Akkauntingiz bormi?
             <a href="{% url 'login' %}">Login</a>
         </p>
 
