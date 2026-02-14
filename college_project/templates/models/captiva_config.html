@@ -119,19 +119,20 @@
             <div class="color-grid">
 
     <!-- WHITE (Available for LT2 + Premier) -->
-    <div class="color-box active"
-         data-name="White"
-         data-models="lt2,premier"
-         data-img="{% static 'images/captiva/captiva_white.png' %}"
-         style="background:#dcdcdc;">
-    </div>
+
 
     <!-- BLACK (Premier only) -->
-    <div class="color-box"
+    <div class="color-box active"
          data-name="Black"
          data-models="premier"
          data-img="{% static 'images/captiva/captiva_black.png' %}"
          style="background:#000;">
+    </div>
+                <div class="color-box"
+         data-name="White"
+         data-models="lt2,premier"
+         data-img="{% static 'images/captiva/captiva_white.png' %}"
+         style="background:#dcdcdc;">
     </div>
 
     <!-- RED (Premier only) -->
@@ -153,15 +154,35 @@
 </div>
 
 <p class="color-name" id="colorName">White</p>
+<!-- DEALER -->
+<div class="card-box">
 
+    <form method="POST" action="{% url 'buy_car' %}">
+        {% csrf_token %}
+        <input type="hidden" name="modification" id="selectedModification">
+        <input type="hidden" name="color" id="selectedColor">
 
-        <!-- DEALER -->
-        <div class="card-box">
-        <form method="POST" action="{% url 'buy_car' %}">
-    {% csrf_token %}
-    <input type="hidden" name="model" value="Captiva">
-    <button type="submit" class="btn-buy">Xarid qilmoq</button>
-</form>
+        <input type="hidden" name="model" value="Captiva">
+
+        <label for="dealer">Avtosalonni tanlang</label>
+
+        <select name="dealer" id="dealer" required class="dealer-select">
+            <option value="">-- Avtosalon tanlang --</option>
+            {% for salon in autosalons %}
+                <option value="{{ salon.id }}">
+                    {{ salon.name }} ({{ salon.city }})
+                </option>
+            {% endfor %}
+        </select>
+
+        <button type="submit" class="buy-btn">
+            Xarid qilmoq
+        </button>
+
+    </form>
+
+</div>
+
 
 </div>
 

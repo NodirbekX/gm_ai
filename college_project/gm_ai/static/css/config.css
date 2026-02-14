@@ -335,3 +335,19 @@
 .buy-btn:active {
     transform: translateY(0);
 }
+
+.dealer-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+
+.dealer-select:focus {
+    border-color: #0072ce;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,114,206,0.1);
+}

@@ -1,19 +1,22 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib import messages
-
-def home(request):
-    return render(request, 'home.html')
-
-# REGISTER
+from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login
 from .models import CustomUser
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import FileResponse
+from django.utils import timezone
+from docx import Document
+from datetime import datetime
+import os
+from .models import Contract
 
+def home(request):
+    return render(request, 'home.html')
 
+# REGISTER
 def register_view(request):
     if request.method == "POST":
 
@@ -80,32 +83,70 @@ def tracker_detail(request):
 def onix_detail(request):
     return render(request, 'models/onix.html')
 
+from .models import Autosalon
+
 def captiva_config(request):
-    return render(request, 'models/captiva_config.html')
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/captiva_config.html', {
+        "autosalons": autosalons
+    })
+
 
 #buy view
-
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from django.conf import settings
-from django.http import FileResponse
-from docx import Document
-import os
-from datetime import datetime
-
-
 @login_required
 def buy_car(request):
     if request.method == "POST":
 
         user = request.user
         model = request.POST.get("model")
+        dealer_id = request.POST.get("dealer")
+        color = request.POST.get("color")
+        modification = request.POST.get("modification")
 
-        # Create document
+        # ------------------------
+        # Autosalonni olish
+        # ------------------------
+        try:
+            dealer = Autosalon.objects.get(id=dealer_id)
+        except Autosalon.DoesNotExist:
+            return redirect("home")
+
+        # ------------------------
+        # Contract Number Generatsiya
+        # Format: UZM-2026-0001
+        # ------------------------
+        year = timezone.now().year
+        last_contract = Contract.objects.filter(
+            created_at__year=year
+        ).order_by("-id").first()
+
+        if last_contract:
+            last_number = int(last_contract.contract_number.split("-")[-1])
+            new_number = last_number + 1
+        else:
+            new_number = 1
+
+        contract_number = f"UZM-{year}-{str(new_number).zfill(4)}"
+
+        # ------------------------
+        # Contract DB ga yozish
+        # ------------------------
+        contract = Contract.objects.create(
+            user=user,
+            autosalon=dealer,
+            model=model,
+            modification=modification,
+            color=color,
+            contract_number=contract_number
+        )
+
+        # ------------------------
+        # DOCX Generatsiya
+        # ------------------------
         document = Document()
 
         document.add_heading('AVTOMOBIL SOTIB OLISH SHARTNOMASI', level=1)
-
+        document.add_paragraph(f"Shartnoma raqami: {contract.contract_number}")
         document.add_paragraph(f"Sana: {datetime.now().strftime('%d.%m.%Y')}")
         document.add_paragraph("")
 
@@ -114,13 +155,27 @@ def buy_car(request):
         document.add_paragraph(f"Telefon: {user.phone}")
         document.add_paragraph(f"Manzil: {user.permanent_address}")
         document.add_paragraph("")
-        document.add_paragraph(f"Sotib olinayotgan avtomobil: Chevrolet {model}")
+
+        document.add_paragraph(f"Avtomobil: Chevrolet {model}")
+        document.add_paragraph(f"Modifikatsiya: {modification.upper()}")
+        document.add_paragraph(f"Rangi: {color}")
         document.add_paragraph("")
+
+        document.add_paragraph(f"Avtosalon: {dealer.name}")
+        document.add_paragraph(f"Shahar: {dealer.city}")
+        document.add_paragraph(f"Manzil: {dealer.address}")
+        document.add_paragraph("")
+
         document.add_paragraph("Tomonlar yuqoridagi ma’lumotlarga asosan shartnoma tuzdilar.")
 
-        # Save file
-        filename = f"{user.username}_{model}_{datetime.now().timestamp()}.docx"
-        filepath = os.path.join(settings.MEDIA_ROOT, "contracts", filename)
+        # ------------------------
+        # Papka yaratish
+        # ------------------------
+        contracts_path = os.path.join(settings.MEDIA_ROOT, "contracts")
+        os.makedirs(contracts_path, exist_ok=True)
+
+        filename = f"{contract.contract_number}.docx"
+        filepath = os.path.join(contracts_path, filename)
 
         document.save(filepath)
 
