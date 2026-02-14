@@ -153,11 +153,11 @@
 
 </div>
 
-<p class="color-name" id="colorName">White</p>
+<p class="color-name" id="colorName">Black</p>
 <!-- DEALER -->
 <div class="card-box">
 
-    <form method="POST" action="{% url 'buy_car' %}">
+    <form method="POST" action="{% url 'buy_car' %}" id="buyForm">
         {% csrf_token %}
         <input type="hidden" name="modification" id="selectedModification">
         <input type="hidden" name="color" id="selectedColor">
@@ -199,78 +199,93 @@
 {% block scripts %}
 
 <script>
+document.addEventListener("DOMContentLoaded", function(){
 
-const colors = document.querySelectorAll(".color-box");
-const mods = document.querySelectorAll(".mod-option");
-const car = document.getElementById("mainCar");
-const colorName = document.getElementById("colorName");
+    const form = document.getElementById("buyForm");
+    const selectedModification = document.getElementById("selectedModification");
+    const selectedColor = document.getElementById("selectedColor");
 
-let currentModel = "premier";
+    const colors = document.querySelectorAll(".color-box");
+    const mods = document.querySelectorAll(".mod-option");
+    const car = document.getElementById("mainCar");
+    const colorName = document.getElementById("colorName");
 
-/* ================= MODIFICATION SWITCH ================= */
+    let currentModel = "premier";
 
-mods.forEach(mod => {
-    mod.addEventListener("click", function(){
+    /* ===== MODIFICATION CLICK ===== */
+    mods.forEach(mod => {
+        mod.addEventListener("click", function(){
 
-        mods.forEach(m => m.classList.remove("active"));
-        this.classList.add("active");
+            mods.forEach(m => m.classList.remove("active"));
+            this.classList.add("active");
 
-        currentModel = this.dataset.model;
-
-        updateColors();
+            currentModel = this.dataset.model;
+            updateColors();
+        });
     });
-});
 
-/* ================= UPDATE COLORS ================= */
-
-function updateColors() {
-
-    let firstAvailable = null;
-
+    /* ===== COLOR CLICK ===== */
     colors.forEach(color => {
+        color.addEventListener("click", function(){
 
-        const allowedModels = color.dataset.models.split(",");
+            if (this.style.display === "none") return;
 
-        if (allowedModels.includes(currentModel)) {
+            colors.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
 
-            color.style.display = "block";
+            car.src = this.dataset.img;
+            colorName.innerText = this.dataset.name;
+        });
+    });
 
-            if (!firstAvailable) {
-                firstAvailable = color;
+    /* ===== UPDATE COLORS BY MOD ===== */
+    function updateColors() {
+
+        let firstAvailable = null;
+
+        colors.forEach(color => {
+
+            const allowedModels = color.dataset.models.split(",");
+
+            if (allowedModels.includes(currentModel)) {
+
+                color.style.display = "block";
+
+                if (!firstAvailable) {
+                    firstAvailable = color;
+                }
+
+            } else {
+                color.style.display = "none";
+                color.classList.remove("active");
             }
+        });
 
-        } else {
+        if (firstAvailable) {
+            colors.forEach(c => c.classList.remove("active"));
+            firstAvailable.classList.add("active");
 
-            color.style.display = "none";
-            color.classList.remove("active");
-
+            car.src = firstAvailable.dataset.img;
+            colorName.innerText = firstAvailable.dataset.name;
         }
-    });
-
-    // Auto select first available color
-    if (firstAvailable) {
-
-        colors.forEach(c => c.classList.remove("active"));
-        firstAvailable.classList.add("active");
-
-        car.src = firstAvailable.dataset.img;
-        colorName.innerText = firstAvailable.dataset.name;
     }
-}
 
-/* ================= COLOR CLICK ================= */
+    /* ===== FORM SUBMIT ===== */
+    form.addEventListener("submit", function(){
 
-colors.forEach(color => {
-    color.addEventListener("click", function(){
+        const activeMod = document.querySelector(".mod-option.active");
+        const activeColor = document.querySelector(".color-box.active");
 
-        if (this.style.display === "none") return;
+        if (activeMod) {
+            selectedModification.value = activeMod.dataset.model;
+        }
 
-        colors.forEach(c => c.classList.remove("active"));
-        this.classList.add("active");
+        if (activeColor) {
+            selectedColor.value = activeColor.dataset.name;
+        }
 
-        car.src = this.dataset.img;
-        colorName.innerText = this.dataset.name;
     });
+
 });
 
 </script>
