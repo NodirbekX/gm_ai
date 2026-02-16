@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="uz">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +14,8 @@
     <link rel="stylesheet" href="{% static 'css/models.css' %}">
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/config.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
@@ -77,9 +79,9 @@
             <div class="icon-circle">👤</div>
 
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" class="login-link">Logout</a>
+            <a href="{% url 'logout' %}" class="login-link">Logout</a>
             {% else %}
-                <a href="{% url 'login' %}" class="login-link">Kirish</a>
+            <a href="{% url 'login' %}" class="login-link">Kirish</a>
             {% endif %}
         </div>
 
@@ -91,102 +93,102 @@
     </main>
     <footer class="site-footer">
 
-   <div class="online-sale-wrapper">
+        <div class="online-sale-wrapper">
 
-        <div class="online-sale-img">
-            <img src="{% static 'images/uzautosavdo.png' %}" alt="">
+            <div class="online-sale-img">
+                <img src="{% static 'images/uzautosavdo.png' %}" alt="">
+            </div>
+
+            <div class="online-sale-text">
+                <h2>AVTOMOBIL ONLAYN SAVDOSI</h2>
+                <p>
+                    Chevrolet nafaqat yangi yo‘llarni, balki yangi onlayn imkoniyatlarni ham ochadi.
+                    Endi siz gavdali bo‘lishingizdan qat’iy nazar, Chevrolet'ni tanlashingiz
+                    va uning egasi bo‘lishingiz mumkin.
+                </p>
+
+                <a href="#" class="sale-link">Batafsil →</a>
+            </div>
+
         </div>
 
-        <div class="online-sale-text">
-            <h2>AVTOMOBIL ONLAYN SAVDOSI</h2>
-            <p>
-                Chevrolet nafaqat yangi yo‘llarni, balki yangi onlayn imkoniyatlarni ham ochadi.
-                Endi siz gavdali bo‘lishingizdan qat’iy nazar, Chevrolet'ni tanlashingiz
-                va uning egasi bo‘lishingiz mumkin.
-            </p>
 
-            <a href="#" class="sale-link">Batafsil →</a>
+        <!-- MAIN FOOTER LINKS -->
+        <div class="footer-links">
+
+            <div class="footer-column">
+                <h4>AVTOMOBILLAR</h4>
+                <ul>
+                    <li>Chevrolet Tahoe</li>
+                    <li>Chevrolet Traverse</li>
+                    <li>Chevrolet Tracker</li>
+                    <li>Chevrolet Onix</li>
+                    <li>Chevrolet Cobalt</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>MIJOZLAR UCHUN</h4>
+                <ul>
+                    <li>Texnik reglament</li>
+                    <li>Texnik xizmat qoidalari</li>
+                    <li>Ehtiyot qismlar</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>DILER</h4>
+                <ul>
+                    <li>Ichki bozor</li>
+                    <li>Ehtiyot qism dilerlari</li>
+                    <li>Tashqi bozorlar</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>CHEVROLET HAQIDA</h4>
+                <ul>
+                    <li>Chevrolet tarixi</li>
+                    <li>Kafolat davri</li>
+                    <li>Doimiy beriladigan savollar</li>
+                </ul>
+            </div>
+
         </div>
 
-    </div>
 
+        <!-- BOTTOM LINE -->
+        <div class="footer-bottom">
 
-    <!-- MAIN FOOTER LINKS -->
-    <div class="footer-links">
+            <div class="footer-left">
+                © 1996 - 2026 AO «UZAUTO MOTORS»
+            </div>
 
-        <div class="footer-column">
-            <h4>AVTOMOBILLAR</h4>
-            <ul>
-                <li>Chevrolet Tahoe</li>
-                <li>Chevrolet Traverse</li>
-                <li>Chevrolet Tracker</li>
-                <li>Chevrolet Onix</li>
-                <li>Chevrolet Cobalt</li>
-            </ul>
+            <div class="footer-social">
+                <span>f</span>
+                <span>in</span>
+                <span>yt</span>
+                <span>tg</span>
+            </div>
+
+            <div class="footer-right">
+                Together let's drive™
+            </div>
+
         </div>
 
-        <div class="footer-column">
-            <h4>MIJOZLAR UCHUN</h4>
-            <ul>
-                <li>Texnik reglament</li>
-                <li>Texnik xizmat qoidalari</li>
-                <li>Ehtiyot qismlar</li>
-            </ul>
-        </div>
+    </footer>
 
-        <div class="footer-column">
-            <h4>DILER</h4>
-            <ul>
-                <li>Ichki bozor</li>
-                <li>Ehtiyot qism dilerlari</li>
-                <li>Tashqi bozorlar</li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h4>CHEVROLET HAQIDA</h4>
-            <ul>
-                <li>Chevrolet tarixi</li>
-                <li>Kafolat davri</li>
-                <li>Doimiy beriladigan savollar</li>
-            </ul>
-        </div>
-
-    </div>
-
-
-    <!-- BOTTOM LINE -->
-    <div class="footer-bottom">
-
-        <div class="footer-left">
-            © 1996 - 2026 AO «UZAUTO MOTORS»
-        </div>
-
-        <div class="footer-social">
-            <span>f</span>
-            <span>in</span>
-            <span>yt</span>
-            <span>tg</span>
-        </div>
-
-        <div class="footer-right">
-            Together let's drive™
-        </div>
-
-    </div>
-
-</footer>
-
-    {% block scripts %}     {% endblock %}
+    {% block scripts %} {% endblock %}
 
 
     <!-- ===== GLOBAL JS ===== -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
-            const menuBtn  = document.getElementById("menuBtn");
-            const sidebar  = document.getElementById("sidebar");
-            const overlay  = document.getElementById("overlay");
+            const menuBtn = document.getElementById("menuBtn");
+            const sidebar = document.getElementById("sidebar");
+            const overlay = document.getElementById("overlay");
             const closeBtn = document.getElementById("closeBtn");
 
             if (!menuBtn || !sidebar || !overlay) return;
@@ -213,5 +215,409 @@
 
 
 
+    <!-- ===== AI CHATBOT ===== -->
+    <style>
+        :root {
+            --ai-primary-color: #0056b3;
+            --ai-secondary-color: #f8f9fa;
+            --ai-text-color: #333;
+            --ai-bg-color: #ffffff;
+            --ai-user-msg-bg: #0056b3;
+            --ai-user-msg-text: #ffffff;
+            --ai-bot-msg-bg: #f0f2f5;
+            --ai-bot-msg-text: #333;
+            --ai-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+            --ai-border-radius: 12px;
+        }
+
+        .ai-chat-fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--ai-primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: var(--ai-shadow);
+            z-index: 1000;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 600;
+            font-family: inherit;
+        }
+
+        .ai-chat-fab:hover {
+            transform: scale(1.05);
+            background: #004494;
+        }
+
+        .ai-chat-icon {
+            font-size: 20px;
+        }
+
+        .ai-chat-box {
+            position: fixed;
+            bottom: 85px;
+            right: 20px;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 500px;
+            max-height: calc(100vh - 120px);
+            background: var(--ai-bg-color);
+            border-radius: var(--ai-border-radius);
+            box-shadow: var(--ai-shadow);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            animation: aiFadeIn 0.3s ease-out;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        @keyframes aiFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ai-chat-header {
+            padding: 15px 20px;
+            background: var(--ai-primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .ai-chat-close-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .ai-chat-close-btn:hover {
+            opacity: 1;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #fdfdfd;
+        }
+
+        /* Scrollbar styling */
+        .ai-chat-messages::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .ai-chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .ai-chat-messages::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .message {
+            max-width: 85%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14.5px;
+            line-height: 1.4;
+            position: relative;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: var(--ai-user-msg-bg);
+            color: var(--ai-user-msg-text);
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-message {
+            align-self: flex-start;
+            background: var(--ai-bot-msg-bg);
+            color: var(--ai-bot-msg-text);
+            border-bottom-left-radius: 4px;
+        }
+
+        .ai-chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            background: #fff;
+        }
+
+        #ai-chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            padding: 10px 18px;
+            outline: none;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        #ai-chat-input:focus {
+            border-color: var(--ai-primary-color);
+        }
+
+        .ai-chat-send-btn {
+            background: var(--ai-primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .ai-chat-send-btn:hover {
+            background: #004494;
+            transform: scale(1.05);
+        }
+
+        .ai-chat-send-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 5px 10px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: aiTyping 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes aiTyping {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-box {
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                height: 100%;
+                border-radius: 0;
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .ai-chat-fab {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+
+    <div id="ai-chatbot-root">
+        <button id="ai-chat-toggle" class="ai-chat-fab">
+            <span class="ai-chat-icon">🤖</span>
+            <span class="ai-chat-text">AI Yordamchi</span>
+        </button>
+
+        <div id="ai-chat-box" class="ai-chat-box" style="display: none;">
+            {% csrf_token %}
+            <div class="ai-chat-header">
+                <div class="ai-chat-title">
+                    <span class="ai-chat-icon">🤖</span>
+                    AI Yordamchi
+                </div>
+                <button id="ai-chat-close" class="ai-chat-close-btn">&times;</button>
+            </div>
+
+            <div id="ai-chat-messages" class="ai-chat-messages">
+                <div class="message ai-message">
+                    Assalomu alaykum! Men UzAuto sun'iy intellekt yordamchisiman. Sizga qanday yordam bera olaman?
+                </div>
+            </div>
+
+            <div class="ai-chat-input-area">
+                <input type="text" id="ai-chat-input" placeholder="Savolingizni yozing..." autocomplete="off">
+                <button id="ai-chat-send" class="ai-chat-send-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleBtn = document.getElementById("ai-chat-toggle");
+            const closeBtn = document.getElementById("ai-chat-close");
+            const chatBox = document.getElementById("ai-chat-box");
+            const chatInput = document.getElementById("ai-chat-input");
+            const sendBtn = document.getElementById("ai-chat-send");
+            const messagesContainer = document.getElementById("ai-chat-messages");
+
+            function toggleChat() {
+                if (chatBox.style.display === "none") {
+                    chatBox.style.display = "flex";
+                    chatInput.focus();
+                    toggleBtn.style.display = "none";
+                } else {
+                    chatBox.style.display = "none";
+                    toggleBtn.style.display = "flex";
+                }
+            }
+
+            toggleBtn.addEventListener("click", toggleChat);
+            closeBtn.addEventListener("click", toggleChat);
+
+            function appendMessage(text, isUser = false) {
+                const msgDiv = document.createElement("div");
+                msgDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+                msgDiv.textContent = text;
+                messagesContainer.appendChild(msgDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            function showTyping() {
+                const typingDiv = document.createElement("div");
+                typingDiv.className = "message ai-message typing-container";
+                typingDiv.id = "ai-typing";
+                typingDiv.innerHTML = `
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                messagesContainer.appendChild(typingDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            function removeTyping() {
+                const typingDiv = document.getElementById("ai-typing");
+                if (typingDiv) typingDiv.remove();
+            }
+
+            async function sendMessage() {
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                appendMessage(text, true);
+                chatInput.value = "";
+                sendBtn.disabled = true;
+
+                showTyping();
+
+                try {
+                    const response = await fetch("/chat/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": getCookie("csrftoken")
+                        },
+                        body: JSON.stringify({ message: text })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        removeTyping();
+                        appendMessage(data.response || "Uzr, javob qaytarishda xatolik yuz berdi.");
+                    } else {
+                        throw new Error("Server error");
+                    }
+                } catch (error) {
+                    removeTyping();
+                    appendMessage("Server bilan bog'lanishda xatolik yuz berdi. Iltimos, keyinroq urinib ko'ring.");
+                    console.error("Chat error:", error);
+                } finally {
+                    sendBtn.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+            function getCookie(name) {
+                // Try to get CSRF token from the input field first
+                const csrfInput = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (csrfInput) return csrfInput.value;
+
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== "") {
+                    const cookies = document.cookie.split(";");
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + "=")) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            sendBtn.addEventListener("click", sendMessage);
+            chatInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") sendMessage();
+            });
+        });
+    </script>
 </body>
+
 </html>
