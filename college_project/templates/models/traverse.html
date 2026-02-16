@@ -1,0 +1,190 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO BANNER ================= -->
+<section class="model-hero">
+    <img src="{% static 'images/traverse/traverse-hero.png' %}" alt="Traverse">
+</section>
+
+<section class="model-detail">
+
+    <!-- TOP BAR -->
+    <div class="model-header">
+        <h2>Chevrolet Traverse</h2>
+        <h3 class="model-price">
+            Chegirmadagi narx 657 730 560 so'mdan
+        </h3>
+    </div>
+
+    <!-- SPECS -->
+    <div class="model-specs">
+
+        <div class="spec">
+            <strong>3.6 L</strong>
+            <span>DVIGATEL</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>9-AT</strong>
+            <span>UZATMALAR QUTISI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>651/2781 L</strong>
+            <span>YUKXONA HAJMI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>318 ot kuchi</strong>
+            <span>MAKSIMAL QUVVAT</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>10 L</strong>
+            <span>YOQILG'I SARFI</span>
+        </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="model-description">
+
+        <h1>
+            KUCH, TEXNOLOGIYA VA OILAVIY QULAYLIK
+        </h1>
+
+        <p>
+            Chevrolet Traverse – oilangizning to’laqonli a’zosi bo’la oladigan
+            ishonchli krossover. 3.6 litrli V6 dvigatel 318 ot kuchi bilan
+            7.6 soniyada 100 km/soat tezlikka chiqadi va qulay boshqaruv hamda
+            yoqilg’i tejamkorligini ta’minlaydi.
+        </p>
+
+        <p>
+            8 o’rindiqli keng salon, 651 dan 2781 litrgacha bagaj hajmi,
+            360° kamera, qo’lsiz bagaj ochish, avtomatik uzoq/yaqin chiroqlar,
+            simsiz zaryadlash va Bose premium audio tizimi bilan
+            har bir safarni yanada qulay qiladi.
+        </p>
+
+    </div>
+
+    <!-- CAR IMAGE -->
+    <div class="model-image-wrapper">
+        <img id="carImage" src="{% static 'images/traverse/traverse_black.png' %}" alt="Traverse">
+    </div>
+
+    <!-- COLOR SELECT -->
+    <div class="color-section">
+
+        <div class="color-dots">
+            <span class="color black active"
+                  data-img="{% static 'images/traverse/traverse_black.png' %}"></span>
+
+            <span class="color white"
+                  data-img="{% static 'images/traverse/traverse_white.png' %}"></span>
+
+            <span class="color silver"
+                  data-img="{% static 'images/traverse/traverse_silver.png' %}"></span>
+
+            <span class="color red"
+                  data-img="{% static 'images/traverse/traverse_red.png' %}"></span>
+        </div>
+
+        <p>Rangni tanlang</p>
+        <small>* Dileringiz bilan ranglarning mavjudligini tekshiring</small>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="model-buttons">
+        <button class="btn-outline">Praysni yuklab olish</button>
+        <button class="btn-outline">Broshyura</button>
+        <button class="btn-filled">Onlayn xarid qilish</button>
+    </div>
+
+</section>
+
+
+<!-- ================= TEXNOLOGIYALAR ================= -->
+
+<section class="config-section">
+
+    <h2 class="config-title">YUQORI TEXNOLOGIYALAR</h2>
+
+    <div class="config-grid">
+
+        <div class="config-card">
+            <img src="{% static 'images/traverse/traverse-interior.png' %}" alt="Interior">
+            <h3>Bose Premium audio</h3>
+            <hr>
+            <ul>
+                <li>10 ta dinamik</li>
+                <li>8 dyumli sensor ekran</li>
+                <li>MyLink multimedia tizimi</li>
+                <li>Yo'lovchilar uchun ko'ngilochar tizim</li>
+            </ul>
+        </div>
+
+        <div class="config-card">
+            <img src="{% static 'images/traverse/traverse-safety.png' %}" alt="Safety">
+            <h3>Xavfsizlik tizimi</h3>
+            <hr>
+            <ul>
+                <li>360° kamera</li>
+                <li>Avtomatik uzoq/yaqin chiroqlar</li>
+                <li>Haydovchi yordam tizimlari</li>
+                <li>To‘qnashuvdan ogohlantirish</li>
+            </ul>
+        </div>
+
+        <div class="config-card">
+            <img src="{% static 'images/traverse/traverse-comfort.png' %}" alt="Comfort">
+            <h3>Qulaylik funksiyalari</h3>
+            <hr>
+            <ul>
+                <li>Simsiz zaryadlash</li>
+                <li>Qo‘lsiz bagaj ochish</li>
+                <li>8 o‘rinli konfiguratsiya</li>
+                <li>Keng salon</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="model-hero">
+    <img src="{% static 'images/traverse/traverse-footer.png' %}" alt="Traverse">
+</section>
+
+
+{% block scripts %}
+
+<script>
+const colorDots = document.querySelectorAll(".color");
+const carImage = document.getElementById("carImage");
+
+colorDots.forEach(dot => {
+    dot.addEventListener("click", function () {
+        colorDots.forEach(d => d.classList.remove("active"));
+        this.classList.add("active");
+        carImage.src = this.getAttribute("data-img");
+    });
+});
+</script>
+
+{% endblock %}
+
+{% endblock %}

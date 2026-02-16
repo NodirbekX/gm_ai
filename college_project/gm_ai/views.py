@@ -77,6 +77,9 @@ def cars_list(request):
 def captiva_detail(request):
     return render(request, 'models/captiva.html')
 
+def traverse_detail(request):
+    return render(request, 'models/traverse.html')
+
 def tracker_detail(request):
     return render(request, 'models/tracker.html')
 
