@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'autosalon_db',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'Ghost141',
         'HOST': 'localhost',
         'PORT': '3306',
     }

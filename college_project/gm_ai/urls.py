@@ -13,6 +13,7 @@ urlpatterns = [
     #Captiva
     path('model/captiva/', views.captiva_detail, name='captiva_detail'),
     path('model/tracker/', views.tracker_detail, name='tracker_detail'),
+    path('model/traverse/', views.traverse_detail, name='traverse_detail'),
     path('model/onix/', views.onix_detail, name='onix_detail'),
 
     #avtomobillar
