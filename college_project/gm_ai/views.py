@@ -86,8 +86,6 @@ def tracker_detail(request):
 def onix_detail(request):
     return render(request, 'models/onix.html')
 
-def xuyna(request):
-    return render(request, 'models/captiva.html')
 
 from .models import Autosalon
 
