@@ -42,8 +42,8 @@
                 <h3>Chevrolet Captiva</h3>
                 <p class="price">15 000 000 SO'M</p>
                 <a href="{% url 'captiva_detail' %}">
-                <button>Batafsil</button>
-        </a>
+                    <button>Batafsil</button>
+                </a>
 
             </div>
 
@@ -155,27 +155,6 @@
 
 </section>
 
-<!-- Chat Toggle Button -->
-<button id="chatToggle">🤖 AI</button>
-
-<!-- Chat Container -->
-<div id="chatContainer" class="hidden">
-    <div class="chat-header">
-        UzAuto AI
-        <span id="closeChat">✖</span>
-    </div>
-
-    <div id="chatMessages"></div>
-
-    <div class="chat-input">
-        <input type="text" id="message" placeholder="Savol yozing...">
-        <button id="sendBtn">Yuborish</button>
-    </div>
-</div>
-
-
-<!-- ================= FOOTER ================= -->
-
 
 
 {% endblock %}
@@ -184,211 +163,239 @@
 
 {% block scripts %}
 <script>
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-            cookie = cookie.trim();
-            if (cookie.startsWith(name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+                if (cookie.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
             }
         }
+        return cookieValue;
     }
-    return cookieValue;
-}
 
-const chatToggle = document.getElementById("chatToggle");
-const chatContainer = document.getElementById("chatContainer");
-const closeChat = document.getElementById("closeChat");
-const sendBtn = document.getElementById("sendBtn");
-const messageInput = document.getElementById("message");
-const chatMessages = document.getElementById("chatMessages");
+    // Global chat elements with safety checks
+    const chatToggle = document.getElementById("chatToggle");
+    const chatContainer = document.getElementById("chatContainer");
+    const closeChat = document.getElementById("closeChat");
+    const sendBtn = document.getElementById("sendBtn");
+    const messageInput = document.getElementById("message");
+    const chatMessages = document.getElementById("chatMessages");
 
-chatToggle.onclick = () => {
-    chatContainer.classList.toggle("hidden");
-};
+    // Properly wrapped chat initialization
+    if (chatToggle && chatContainer) {
+        chatToggle.onclick = () => {
+            chatContainer.classList.toggle("hidden");
+        };
+    }
 
-closeChat.onclick = () => {
-    chatContainer.classList.add("hidden");
-};
+    if (closeChat && chatContainer) {
+        closeChat.onclick = () => {
+            chatContainer.classList.add("hidden");
+        };
+    }
 
-sendBtn.onclick = sendMessage;
-messageInput.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") sendMessage();
-});
+    if (sendBtn) {
+        sendBtn.onclick = sendMessage;
+    }
 
-function sendMessage() {
-    let message = messageInput.value.trim();
-    if (!message) return;
+    if (messageInput) {
+        messageInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    }
 
-    chatMessages.innerHTML += `
+    function sendMessage() {
+        if (!messageInput || !chatMessages) return;
+
+        let message = messageInput.value.trim();
+        if (!message) return;
+
+        chatMessages.innerHTML += `
         <div class="chat-message user"><b>Siz:</b> ${message}</div>
     `;
 
-    chatMessages.innerHTML += `
+        chatMessages.innerHTML += `
         <div class="chat-message bot" id="loading">Yozilmoqda...</div>
     `;
 
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
-    fetch("/chat/", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": getCookie("csrftoken")
-        },
-        body: JSON.stringify({ message: message })
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("loading").remove();
-        chatMessages.innerHTML += `
-            <div class="chat-message bot"><b>AI:</b> ${data.response}</div>
-        `;
         chatMessages.scrollTop = chatMessages.scrollHeight;
-    });
 
-    messageInput.value = "";
-}
+        fetch("/chat/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            body: JSON.stringify({ message: message })
+        })
+            .then(res => res.json())
+            .then(data => {
+                const loadingEl = document.getElementById("loading");
+                if (loadingEl) loadingEl.remove();
 
-document.addEventListener("DOMContentLoaded", function() {
+                if (chatMessages) {
+                    chatMessages.innerHTML += `
+                <div class="chat-message bot"><b>AI:</b> ${data.response || "No response"}</div>
+            `;
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            })
+            .catch(err => {
+                const loadingEl = document.getElementById("loading");
+                if (loadingEl) loadingEl.remove();
+                console.error("Chat error:", err);
+            });
 
-    /* ================= HERO SLIDER ================= */
+        messageInput.value = "";
+    }
 
-    const heroSlides = document.querySelectorAll(".hero-slider .slide");
-    const heroLeft = document.querySelector(".hero-slider .arrow.left");
-    const heroRight = document.querySelector(".hero-slider .arrow.right");
-    const dotsContainer = document.querySelector(".hero-slider .dots");
+    document.addEventListener("DOMContentLoaded", function () {
 
-    if (heroSlides.length) {
+        /* ================= HERO SLIDER ================= */
 
-        let heroIndex = 0;
-        let heroInterval;
+        const heroSlides = document.querySelectorAll(".hero-slider .slide");
+        const heroLeft = document.querySelector(".hero-slider .arrow.left");
+        const heroRight = document.querySelector(".hero-slider .arrow.right");
+        const dotsContainer = document.querySelector(".hero-slider .dots");
 
-        heroSlides.forEach((_, i) => {
-            const dot = document.createElement("span");
-            if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => {
-                heroIndex = i;
+        if (heroSlides.length) {
+
+            let heroIndex = 0;
+            let heroInterval;
+
+            if (dotsContainer) {
+                heroSlides.forEach((_, i) => {
+                    const dot = document.createElement("span");
+                    if (i === 0) dot.classList.add("active");
+                    dot.addEventListener("click", () => {
+                        heroIndex = i;
+                        showHero();
+                        restartHero();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            const heroDots = document.querySelectorAll(".hero-slider .dots span");
+
+            function showHero() {
+                if (!heroSlides[heroIndex]) return;
+                heroSlides.forEach(s => s.classList.remove("active"));
+                heroSlides[heroIndex].classList.add("active");
+
+                if (heroDots.length > heroIndex) {
+                    heroDots.forEach(d => d.classList.remove("active"));
+                    heroDots[heroIndex].classList.add("active");
+                }
+            }
+
+            function nextHero() {
+                heroIndex = (heroIndex + 1) % heroSlides.length;
                 showHero();
+            }
+
+            function prevHero() {
+                heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
+                showHero();
+            }
+
+            function startHero() {
+                heroInterval = setInterval(nextHero, 4000);
+            }
+
+            function restartHero() {
+                clearInterval(heroInterval);
+                startHero();
+            }
+
+            heroRight?.addEventListener("click", () => {
+                nextHero();
                 restartHero();
             });
-            dotsContainer.appendChild(dot);
-        });
 
-        const heroDots = document.querySelectorAll(".hero-slider .dots span");
+            heroLeft?.addEventListener("click", () => {
+                prevHero();
+                restartHero();
+            });
 
-        function showHero() {
-            heroSlides.forEach(s => s.classList.remove("active"));
-            heroDots.forEach(d => d.classList.remove("active"));
-            heroSlides[heroIndex].classList.add("active");
-            heroDots[heroIndex].classList.add("active");
-        }
-
-        function nextHero() {
-            heroIndex = (heroIndex + 1) % heroSlides.length;
-            showHero();
-        }
-
-        function prevHero() {
-            heroIndex = (heroIndex - 1 + heroSlides.length) % heroSlides.length;
-            showHero();
-        }
-
-        function startHero() {
-            heroInterval = setInterval(nextHero, 4000);
-        }
-
-        function restartHero() {
-            clearInterval(heroInterval);
             startHero();
         }
 
-        heroRight?.addEventListener("click", () => {
-            nextHero();
-            restartHero();
-        });
 
-        heroLeft?.addEventListener("click", () => {
-            prevHero();
-            restartHero();
-        });
+        /* ================= CAR SLIDER ================= */
 
-        startHero();
-    }
+        const carSlider = document.querySelector(".car-slider");
+        const carLeft = document.querySelector(".car-arrow.left");
+        const carRight = document.querySelector(".car-arrow.right");
 
+        if (carSlider) {
+            const carCards = document.querySelectorAll(".car-card");
+            if (carCards.length > 0) {
+                const gap = 30;
+                const visibleCards = 3;
+                let carIndex = 0;
 
-    /* ================= CAR SLIDER ================= */
+                function getCardWidth() {
+                    return carCards[0].offsetWidth + gap;
+                }
 
-    const carSlider = document.querySelector(".car-slider");
-    const carLeft = document.querySelector(".car-arrow.left");
-    const carRight = document.querySelector(".car-arrow.right");
+                function updateCar() {
+                    const cardWidth = getCardWidth();
+                    carSlider.style.transform = `translateX(-${carIndex * cardWidth}px)`;
+                }
 
-    if (carSlider) {
+                carRight?.addEventListener("click", () => {
+                    if (carIndex < carCards.length - visibleCards) {
+                        carIndex++;
+                    } else {
+                        carIndex = 0;
+                    }
+                    updateCar();
+                });
 
-        const carCards = document.querySelectorAll(".car-card");
-        const gap = 30;
-        const visibleCards = 3;
-        let carIndex = 0;
+                carLeft?.addEventListener("click", () => {
+                    if (carIndex > 0) {
+                        carIndex--;
+                    } else {
+                        carIndex = Math.max(0, carCards.length - visibleCards);
+                    }
+                    updateCar();
+                });
 
-        function getCardWidth() {
-            return carCards[0].offsetWidth + gap;
+                window.addEventListener("resize", updateCar);
+            }
         }
 
-        function updateCar() {
-            const cardWidth = getCardWidth();
-            carSlider.style.transform =
-                `translateX(-${carIndex * cardWidth}px)`;
+
+        /* ================= MODEL SWITCH ================= */
+
+        const tabs = document.querySelectorAll(".model-tabs span");
+        const modelImg = document.getElementById("modelImg");
+        const modelTitle = document.getElementById("modelTitle");
+
+        if (tabs.length && modelImg && modelTitle) {
+            tabs.forEach(tab => {
+                tab.addEventListener("click", function () {
+                    tabs.forEach(t => t.classList.remove("active"));
+                    this.classList.add("active");
+
+                    const model = this.dataset.model;
+                    if (model === "tracker") {
+                        modelImg.src = "{% static 'images/tracker-big.jpg' %}";
+                        modelTitle.textContent = "Chevrolet Tracker";
+                    } else {
+                        modelImg.src = "{% static 'images/onix-big.png' %}";
+                        modelTitle.textContent = "Chevrolet Onix";
+                    }
+                });
+            });
         }
 
-        carRight?.addEventListener("click", () => {
-            if (carIndex < carCards.length - visibleCards) {
-                carIndex++;
-            } else {
-                carIndex = 0;
-            }
-            updateCar();
-        });
-
-        carLeft?.addEventListener("click", () => {
-            if (carIndex > 0) {
-                carIndex--;
-            } else {
-                carIndex = carCards.length - visibleCards;
-            }
-            updateCar();
-        });
-
-        window.addEventListener("resize", updateCar);
-    }
-
-
-    /* ================= MODEL SWITCH ================= */
-
-    const tabs = document.querySelectorAll(".model-tabs span");
-    const modelImg = document.getElementById("modelImg");
-    const modelTitle = document.getElementById("modelTitle");
-
-    tabs.forEach(tab => {
-        tab.addEventListener("click", function() {
-
-            tabs.forEach(t => t.classList.remove("active"));
-            this.classList.add("active");
-
-            const model = this.dataset.model;
-
-            if (model === "tracker") {
-                modelImg.src = "{% static 'images/tracker-big.jpg' %}";
-                modelTitle.textContent = "Chevrolet Tracker";
-            } else {
-                modelImg.src = "{% static 'images/onix-big.png' %}";
-                modelTitle.textContent = "Chevrolet Onix";
-            }
-        });
     });
-
-});
 </script>
 {% endblock %}
