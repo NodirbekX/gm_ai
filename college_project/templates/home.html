@@ -155,6 +155,25 @@
 
 </section>
 
+<!-- Chat Toggle Button -->
+<button id="chatToggle">🤖 AI</button>
+
+<!-- Chat Container -->
+<div id="chatContainer" class="hidden">
+    <div class="chat-header">
+        UzAuto AI
+        <span id="closeChat">✖</span>
+    </div>
+
+    <div id="chatMessages"></div>
+
+    <div class="chat-input">
+        <input type="text" id="message" placeholder="Savol yozing...">
+        <button id="sendBtn">Yuborish</button>
+    </div>
+</div>
+
+
 <!-- ================= FOOTER ================= -->
 
 
@@ -165,6 +184,75 @@
 
 {% block scripts %}
 <script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const chatToggle = document.getElementById("chatToggle");
+const chatContainer = document.getElementById("chatContainer");
+const closeChat = document.getElementById("closeChat");
+const sendBtn = document.getElementById("sendBtn");
+const messageInput = document.getElementById("message");
+const chatMessages = document.getElementById("chatMessages");
+
+chatToggle.onclick = () => {
+    chatContainer.classList.toggle("hidden");
+};
+
+closeChat.onclick = () => {
+    chatContainer.classList.add("hidden");
+};
+
+sendBtn.onclick = sendMessage;
+messageInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+    let message = messageInput.value.trim();
+    if (!message) return;
+
+    chatMessages.innerHTML += `
+        <div class="chat-message user"><b>Siz:</b> ${message}</div>
+    `;
+
+    chatMessages.innerHTML += `
+        <div class="chat-message bot" id="loading">Yozilmoqda...</div>
+    `;
+
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    fetch("/chat/", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({ message: message })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("loading").remove();
+        chatMessages.innerHTML += `
+            <div class="chat-message bot"><b>AI:</b> ${data.response}</div>
+        `;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
+
+    messageInput.value = "";
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 
     /* ================= HERO SLIDER ================= */

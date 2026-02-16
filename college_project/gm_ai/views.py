@@ -187,36 +187,43 @@ def buy_car(request):
 
     return redirect("home")
 
+import json
+import google.generativeai as genai
+from django.http import JsonResponse
+from django.conf import settings
+
+# Configure Gemini
+genai.configure(api_key=settings.GEMINI_API_KEY)
+
+model = genai.GenerativeModel("gemini-3-flash-preview")
+
 
 def chat(request):
-    import json
-    from django.http import JsonResponse
-    
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-            user_message = data.get("message", "").lower()
-            
-            # Simple AI Logic (Mock)
-            response_text = "Uzr, bu haqda ma'lumotga ega emasman. Iltimos, batafsilroq so'rang."
-            
-            if "salom" in user_message or "assalom" in user_message:
-                response_text = "Assalomu alaykum! UzAuto AI yordamchisiga xush kelibsiz. Sizga qanday yordam bera olaman?"
-            elif "narx" in user_message or "qancha" in user_message:
-                response_text = "Avtomobillar narxlari bilan 'Avtomobillar' bo'limida tanishishingiz mumkin. Hozirda Captiva, Tracker va Onix modellari sotuvda mavjud."
-            elif "kredit" in user_message or "bo'lib to'lash" in user_message:
-                response_text = "Hozirda bizda turli xil imtiyozli kredit shartlari mavjud. Batafsil ma'lumot uchun dilerlik markazlariga murojaat qilishingizni so'raymiz."
-            elif "captiva" in user_message:
-                response_text = "Yangi Chevrolet Captiva - bu zamonaviy dizayn va yuqori texnologiyalar uyg'unligi. U 7 kishilik keng salon va kuchli dvigatelga ega."
-            elif "tracker" in user_message:
-                response_text = "Chevrolet Tracker - ixcham krossover bozori uchun ideal tanlov. U tejamkor va xavfsizlik tizimlari bilan jihozlangan."
-            elif "onix" in user_message:
-                response_text = "Chevrolet Onix - zamonaviy texnologiyalar va qulaylikning mukammal balansi. U turbo dvigatel va Apple CarPlay/Android Auto bilan jihozlangan."
-            elif "rahmat" in user_message:
-                response_text = "Arzimaydi! Yana savollaringiz bo'lsa, bemalol murojaat qiling."
+    if request.method != "POST":
+        return JsonResponse({"error": "Invalid method"}, status=405)
 
-            return JsonResponse({"status": "success", "response": response_text})
-        except Exception as e:
-            return JsonResponse({"status": "error", "message": str(e)}, status=400)
-    
-    return JsonResponse({"status": "error", "message": "Invalid method"}, status=405)
+    try:
+        data = json.loads(request.body)
+        message = data.get("message", "").strip()
+
+        if not message:
+            return JsonResponse({"response": "Iltimos, savol yozing."})
+
+        prompt = f"""
+        Sen UzAuto rasmiy AI yordamchisisan.
+        Professional o‘zbek tilida javob ber.
+        Savol: {message}
+        """
+
+        response = model.generate_content(prompt)
+
+        # SAFER extraction
+        if response.candidates:
+            reply = response.candidates[0].content.parts[0].text
+        else:
+            reply = "Javob topilmadi."
+
+        return JsonResponse({"response": reply})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
