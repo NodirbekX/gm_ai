@@ -212,6 +212,17 @@ def chat(request):
         prompt = f"""
         Sen UzAuto rasmiy AI yordamchisisan.
         Professional o‘zbek tilida javob ber.
+        captiva narxi: LT2 pozitsiyaniki 304,900,000
+                       PRIMIER pozitsiyaniki 334,900,000
+        onix narxi:LS MT — 161,900,000 so‘m 
+                   3LT MT — 169,750,000 so‘m
+                   LTZ TURBO AT — 184,899,840 so‘m 
+                   PREMIER 2 TURBO AT PLUS — 206,640,160 so‘m 
+        tracker narxi: TRK LS PLUS — 215,951,360 so‘m
+                       TRK LTZ PLUS — 229,108,480 so‘m
+                       TRK PREMIER PLUS — 252,656,160 so‘m
+                       TRK REDLINE — 260,474,080 so‘m
+        tahoe narxi : 1,464,500,000 so`m
         Savol: {message}
         """
 
