@@ -1,0 +1,181 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO BANNER ================= -->
+
+<section class="model-hero">
+    <img src="{% static 'images/onix/onix-hero.png' %}" alt="Onix">
+</section>
+
+<section class="model-detail">
+
+    <!-- TOP BAR -->
+    <div class="model-header">
+        <h2>Onix</h2>
+        <h3 class="model-price">
+            Chegirmadagi narx 161 900 000 so'mdan
+        </h3>
+    </div>
+
+    <!-- SPECS -->
+    <div class="model-specs">
+
+        <div class="spec">
+            <strong>1.2 / 1.2 Turbo</strong>
+            <span>DVIGATEL</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>5MT / 6AT</strong>
+            <span>UZATMALAR QUTISI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>469 L</strong>
+            <span>YUKXONA HAJMI</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>90 / 132 ot kuchi</strong>
+            <span>MAKSIMAL QUVVAT</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="spec">
+            <strong>4,7 / 4,8 L</strong>
+            <span>YOQILG‘I SARFI</span>
+        </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="model-description">
+        <h1>
+            YORQIN DIZAYN VA ZAMONAVIY TEXNOLOGIYA
+        </h1>
+
+        <p>
+            Chevrolet Onix – zamonaviy dizayn, qulay interyer va xavfsizlik uchun barcha
+            zarur funksiyalar bilan jihozlangan. Bu avtomobil o‘rta segmentdagi
+            avtomobillar qanday bo‘lishi mumkinligi haqidagi tasavvurni o‘zgartiradi.
+        </p>
+    </div>
+
+    <!-- CAR IMAGE -->
+    <div class="model-image-wrapper">
+        <img id="carImage" src="{% static 'images/onix/onix_black.png' %}" alt="Onix">
+    </div>
+
+    <!-- COLOR SELECT -->
+    <div class="color-section">
+
+        <div class="color-dots">
+            <span class="color gray"
+                  data-img="{% static 'images/onix/onix_gray.png' %}"></span>
+
+            <span class="color black active"
+                  data-img="{% static 'images/onix/onix_black.png' %}"></span>
+
+            <span class="color silver"
+                  data-img="{% static 'images/onix/onix_silver.png' %}"></span>
+
+            <span class="color white"
+                  data-img="{% static 'images/onix/onix_white.png' %}"></span>
+
+            <span class="color red"
+                  data-img="{% static 'images/onix/onix_red.png' %}"></span>
+        </div>
+
+        <p>Rangni tanlang</p>
+        <small>* Dileringiz bilan ranglarning mavjudligini tekshiring</small>
+
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="model-buttons">
+        <button class="btn-outline">Praysni yuklab olish</button>
+        <button class="btn-outline">Test drayv</button>
+       <a href="{% url 'onix_config' %}">
+            <button class="btn-filled">Onlayn xarid qilish</button>
+        </a>
+    </div>
+
+</section>
+
+<!-- ================= KOMPLEKTATSIYALAR ================= -->
+
+<section class="config-section">
+
+    <h2 class="config-title">KOMPLEKTATSIYALAR</h2>
+
+    <div class="config-grid">
+
+        <div class="config-card">
+            <h3>LS MT</h3>
+            <hr>
+            <ul>
+                <li>Mato o‘rindiqlar</li>
+                <li>Galogen faralar</li>
+                <li>Dinamiklar (4)</li>
+                <li>Havo sovutgich</li>
+                <li>15" disklar</li>
+            </ul>
+        </div>
+
+        <div class="config-card">
+            <h3>1LT MT</h3>
+            <hr>
+            <ul>
+                <li>8" sensorli ekran</li>
+                <li>USB port</li>
+                <li>LED chiroqlar</li>
+                <li>Immobilayzer</li>
+                <li>Isitiladigan orqa oyna</li>
+            </ul>
+        </div>
+
+        <div class="config-card">
+            <h3>LTZ Turbo AT</h3>
+            <hr>
+            <ul>
+                <li>Avtomat uzatma</li>
+                <li>6 ta dinamik</li>
+                <li>Orqa kamera</li>
+                <li>Kruiz-kontrol</li>
+                <li>Yengil quyma disklar</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="model-hero">
+    <img src="{% static 'images/onix/onix-hero.png' %}" alt="Onix">
+</section>
+
+{% block scripts %}
+<script>
+const colorDots = document.querySelectorAll(".color");
+const carImage = document.getElementById("carImage");
+
+colorDots.forEach(dot => {
+    dot.addEventListener("click", function () {
+        colorDots.forEach(d => d.classList.remove("active"));
+        this.classList.add("active");
+        carImage.src = this.getAttribute("data-img");
+    });
+});
+</script>
+{% endblock %}
+
+{% endblock %}

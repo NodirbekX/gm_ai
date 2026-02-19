@@ -36,6 +36,7 @@
     <div class="car-slider-wrapper">
 
         <div class="car-slider">
+            {% for i in "0123456789" %}
 
             <div class="car-card">
                 <img src="{% static 'images/car1.png' %}" alt="">
@@ -58,30 +59,32 @@
             </div>
 
             <div class="car-card">
-                <img src="{% static 'images/car3.webp' %}" alt="">
+                <img src="{% static 'images/car3.png' %}" alt="">
                 <h3>Chevrolet Onix</h3>
                 <p class="price">15 000 000 SO'M</p>
+                <a href="{% url 'onix_detail' %}">
                 <button>Batafsil</button>
+                </a>
             </div>
 
-            <div class="car-card">
-                <img src="{% static 'images/car3.webp' %}" alt="">
-                <h3>Chevrolet Malibu</h3>
-                <p class="price">25 000 000 SO'M</p>
-                <button>Batafsil</button>
-            </div>
+
 
             <div class="car-card">
-                <img src="{% static 'images/car3.webp' %}" alt="">
+                <img src="{% static 'images/car4.png' %}" alt="">
                 <h3>Chevrolet Tracker</h3>
                 <p class="price">35 000 000 SO'M</p>
+                <a href="{% url 'tracker_detail' %}">
                 <button>Batafsil</button>
+                </a>
             </div>
+        {% endfor %}
 
         </div>
 
         <div class="car-arrow left">&#10094;</div>
         <div class="car-arrow right">&#10095;</div>
+
+
 
     </div>
 

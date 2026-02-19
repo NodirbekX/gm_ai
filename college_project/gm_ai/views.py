@@ -85,7 +85,8 @@ def tracker_detail(request):
 
 def onix_detail(request):
     return render(request, 'models/onix.html')
-
+def tahoe_detail(request):
+    return render(request, 'models/tahoe.html')
 
 from .models import Autosalon
 
@@ -94,6 +95,32 @@ def captiva_config(request):
     return render(request, 'models/captiva_config.html', {
         "autosalons": autosalons
     })
+def onix_config(request):
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/onix_config.html', {
+        "autosalons": autosalons
+    })
+def tracker_config(request):
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/tracker_config.html', {
+        "autosalons": autosalons
+    })
+def tahoe_config(request):
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/tahoe_config.html', {
+        "autosalons": autosalons
+    })
+def labo_config(request):
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/labo_config.html', {
+        "autosalons": autosalons
+    })
+def damas_config(request):
+    autosalons = Autosalon.objects.all()
+    return render(request, 'models/damas_config.html', {
+        "autosalons": autosalons
+    })
+
 
 
 #buy view

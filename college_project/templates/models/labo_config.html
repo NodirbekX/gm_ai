@@ -1,0 +1,172 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="config-page">
+    <div class="config-back">
+        <a href="{% url 'cars_list' %}">
+            ← Ro'yxatga qaytish
+        </a>
+    </div>
+
+<div class="config-container">
+
+    <!-- LEFT SIDE -->
+    <div class="config-left">
+
+        <img id="mainCar"
+             src="{% static 'images/labo/labo_white.png' %}"
+             alt="LABO">
+
+        <!-- SPECS -->
+        <div class="car-specs">
+            <div><span>Dvigatel quvvati</span><strong>38 o.k.</strong></div>
+            <div><span>100 km/soatgacha tezlanish</span><strong>41 sek</strong></div>
+            <div><span>100 km masofa uchun yoqilg'i sarfi</span><strong>8,6 / 7,8 L</strong></div>
+            <div><span>Uzatmalar qutisi</span><strong>5 MT</strong></div>
+        </div>
+
+<!-- ================= TECHNICAL FEATURES ================= -->
+
+<section class="tech-section">
+
+    <div class="tech-header">
+        <div class="tech-title">
+            <div class="tech-icon">📄</div>
+            <div>
+                <h3>Texnik xususiyatlar</h3>
+                <p>Texnik xususiyatlar, komplektatsiya va hujjatlar</p>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">
+            ⬇ Xarakteristikani yuklash
+        </a>
+    </div>
+
+    <div class="tech-content">
+
+        <div class="tech-menu">
+            <div class="tech-tab active">Tavsif</div>
+            <div class="tech-tab">Eksteryer</div>
+            <div class="tech-tab">Interyer</div>
+            <div class="tech-tab">Xususiyatlari</div>
+            <div class="tech-tab">Multimedia va texnologiyalar</div>
+        </div>
+
+        <div class="tech-display">
+            <img src="{% static 'images/labo/labo_white.png' %}" alt="LABO">
+
+            <p>
+                Kichik biznes, logistika va xizmat ko‘rsatish sohalari uchun mo‘ljallangan yengil tijorat avtomobili.
+                <br><br>
+                U yuqori manevrlilik, tejamkorlik va oson xizmat ko‘rsatish imkoniyatlarini o‘zida mujassam etgan.
+                Yuk platformasi yuk ortish va tushirishni maksimal darajada qulay qilish maqsadida ishlab chiqilgan –
+                past polli va bukuluvchi yon tomonlarga ega.
+                <br><br>
+                Labo’ning mustahkam konstruksiyasi va sodda, amaliy dizayni uni har kungi ishda
+                ishonchli va qulay hamrohga aylantiradi.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="config-right">
+
+    <h2>LABO</h2>
+    <p class="subtitle">Modifikatsiya va rangni tanlang</p>
+
+    <div class="config-tabs">
+        <div class="tab active">Konfiguratsiya</div>
+        <div class="tab">Muddatli to'lov kalkulyatori</div>
+    </div>
+
+    <!-- MODIFICATION -->
+    <div class="card-box">
+        <h4>Modifikatsiya</h4>
+
+        <div class="mod-option active"
+             data-model="lb2plus">
+            <span>LB2 PLUS NEW</span>
+            <strong>96,370,000 so'm</strong>
+        </div>
+    </div>
+
+    <!-- COLORS -->
+    <div class="card-box">
+        <h4>Rangni tanlang</h4>
+
+        <div class="color-grid">
+            <div class="color-box active"
+                 data-name="Summit White"
+                 data-models="lb2plus"
+                 data-img="{% static 'images/labo/labo_white.png' %}"
+                 style="background:#f5f5f5;">
+            </div>
+        </div>
+
+        <p class="color-name" id="colorName">Summit White</p>
+    </div>
+
+    <!-- DEALER -->
+    <div class="card-box">
+
+        <form method="POST" action="{% url 'buy_car' %}" id="buyForm">
+            {% csrf_token %}
+            <input type="hidden" name="modification" id="selectedModification">
+            <input type="hidden" name="color" id="selectedColor">
+            <input type="hidden" name="model" value="LABO">
+
+            <label for="dealer">Avtosalonni tanlang</label>
+
+            <select name="dealer" id="dealer" required class="dealer-select">
+                <option value="">-- Avtosalon tanlang --</option>
+                {% for salon in autosalons %}
+                    <option value="{{ salon.id }}">
+                        {{ salon.name }} ({{ salon.city }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="buy-btn">
+                Xarid qilmoq
+            </button>
+        </form>
+
+    </div>
+
+</div>
+</div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const form = document.getElementById("buyForm");
+    const selectedModification = document.getElementById("selectedModification");
+    const selectedColor = document.getElementById("selectedColor");
+
+    const activeMod = document.querySelector(".mod-option.active");
+    const activeColor = document.querySelector(".color-box.active");
+
+    if (activeMod) {
+        selectedModification.value = activeMod.dataset.model;
+    }
+
+    if (activeColor) {
+        selectedColor.value = activeColor.dataset.name;
+    }
+
+});
+</script>
+
+{% endblock %}

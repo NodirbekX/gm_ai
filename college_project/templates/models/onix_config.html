@@ -1,0 +1,256 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="config-page">
+    <div class="config-back">
+        <a href="{% url 'cars_list' %}">
+            ← Ro'yxatga qaytish
+        </a>
+    </div>
+
+<div class="config-container">
+
+    <!-- LEFT SIDE -->
+    <div class="config-left">
+
+        <img id="mainCar"
+             src="{% static 'images/onix/onix_black.png' %}"
+             alt="Onix">
+
+        <!-- SPECS -->
+        <div class="car-specs">
+            <div><span>Dvigatel quvvati</span><strong>90 o.k.</strong></div>
+            <div><span>0–100 km/soat</span><strong>10,6 sek</strong></div>
+            <div><span>100 km yoqilg‘i</span><strong>5,9 L</strong></div>
+            <div><span>Uzatmalar qutisi</span><strong>5MT</strong></div>
+        </div>
+
+<!-- ================= TECHNICAL FEATURES ================= -->
+
+<section class="tech-section">
+
+    <div class="tech-header">
+        <div class="tech-title">
+            <div class="tech-icon">📄</div>
+            <div>
+                <h3>Texnik xususiyatlar</h3>
+                <p>Texnik xususiyatlar, komplektatsiya va hujjatlar</p>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">
+            ⬇ Xarakteristikani yuklash
+        </a>
+    </div>
+
+    <div class="tech-content">
+
+        <div class="tech-menu">
+            <div class="tech-tab active">Tavsif</div>
+            <div class="tech-tab">Eksteryer</div>
+            <div class="tech-tab">Interyer</div>
+            <div class="tech-tab">Xavfsizlik</div>
+            <div class="tech-tab">Multimedia va texnologiyalar</div>
+        </div>
+
+        <div class="tech-display">
+            <img src="{% static 'images/onix/onix_gray.png' %}" alt="Onix">
+
+            <p>
+                CHEVROLET ONIX LS MT – pragmatik va ratsional foydalaniladigan
+                zamonaviy shahar avtomobili. Atmosferali dvigatel, mexanik
+                uzatma va tejamkorlik, oddiylik hamda ishonchlilikning
+                muvozanatli uyg‘unligi bilan kundalik hayot uchun ideal tanlov.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="config-right">
+
+        <h2>ONIX</h2>
+        <p class="subtitle">Modifikatsiya va rangni tanlang</p>
+
+        <!-- TABS -->
+        <div class="config-tabs">
+            <div class="tab active">Konfiguratsiya</div>
+            <div class="tab">Muddatli to‘lov kalkulyatori</div>
+        </div>
+
+        <!-- MODIFICATION -->
+        <div class="card-box">
+
+            <h4>Modifikatsiya</h4>
+
+            <div class="mod-option active" data-model="ls">
+                <span>LS MT</span>
+                <strong>161,900,000 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="3lt">
+                <span>3LT MT</span>
+                <strong>169,750,000 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="ltz">
+                <span>LTZ Turbo AT</span>
+                <strong>184,899,840 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="premier">
+                <span>Premier 2 Turbo AT PLUS</span>
+                <strong>206,640,160 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="redline">
+                <span>Turbo AT Redline</span>
+                <strong>215,624,800 so'm</strong>
+            </div>
+
+        </div>
+
+        <!-- COLORS -->
+        <div class="card-box">
+
+            <h4>Rangni tanlang</h4>
+
+            <div class="color-grid">
+
+                <div class="color-box active"
+                     data-name="Black Metallic"
+                     data-models="ls,3lt,ltz,premier,redline"
+                     data-img="{% static 'images/onix/onix_black.png' %}"
+                     style="background:#000;">
+                </div>
+
+                <div class="color-box"
+                     data-name="White"
+                     data-models="ls,3lt,ltz,premier,redline"
+                     data-img="{% static 'images/onix/onix_white.png' %}"
+                     style="background:#eee;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Red"
+                     data-models="ltz,premier,redline"
+                     data-img="{% static 'images/onix/onix_red.png' %}"
+                     style="background:#c00;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Gray"
+                     data-models="ls,3lt,ltz,premier,redline"
+                     data-img="{% static 'images/onix/onix_gray.png' %}"
+                     style="background:#777;">
+                </div>
+
+            </div>
+
+            <p class="color-name" id="colorName">Black Metallic</p>
+        </div>
+
+        <!-- DEALER -->
+        <div class="card-box">
+
+            <form method="POST" action="{% url 'buy_car' %}" id="buyForm">
+                {% csrf_token %}
+                <input type="hidden" name="modification" id="selectedModification">
+                <input type="hidden" name="color" id="selectedColor">
+                <input type="hidden" name="model" value="Onix">
+
+                <label for="dealer">Avtosalonni tanlang</label>
+
+                <select name="dealer" id="dealer" required class="dealer-select">
+                    <option value="">-- Avtosalon tanlang --</option>
+                    {% for salon in autosalons %}
+                        <option value="{{ salon.id }}">
+                            {{ salon.name }} ({{ salon.city }})
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="buy-btn">
+                    Xarid qilmoq
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const form = document.getElementById("buyForm");
+    const selectedModification = document.getElementById("selectedModification");
+    const selectedColor = document.getElementById("selectedColor");
+
+    const colors = document.querySelectorAll(".color-box");
+    const mods = document.querySelectorAll(".mod-option");
+    const car = document.getElementById("mainCar");
+    const colorName = document.getElementById("colorName");
+
+    let currentModel = "ls";
+
+    mods.forEach(mod => {
+        mod.addEventListener("click", function(){
+            mods.forEach(m => m.classList.remove("active"));
+            this.classList.add("active");
+            currentModel = this.dataset.model;
+            updateColors();
+        });
+    });
+
+    colors.forEach(color => {
+        color.addEventListener("click", function(){
+            if (this.style.display === "none") return;
+            colors.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+            car.src = this.dataset.img;
+            colorName.innerText = this.dataset.name;
+        });
+    });
+
+    function updateColors() {
+        let firstAvailable = null;
+        colors.forEach(color => {
+            const allowedModels = color.dataset.models.split(",");
+            if (allowedModels.includes(currentModel)) {
+                color.style.display = "block";
+                if (!firstAvailable) firstAvailable = color;
+            } else {
+                color.style.display = "none";
+                color.classList.remove("active");
+            }
+        });
+
+        if (firstAvailable) {
+            colors.forEach(c => c.classList.remove("active"));
+            firstAvailable.classList.add("active");
+            car.src = firstAvailable.dataset.img;
+            colorName.innerText = firstAvailable.dataset.name;
+        }
+    }
+
+    form.addEventListener("submit", function(){
+        const activeMod = document.querySelector(".mod-option.active");
+        const activeColor = document.querySelector(".color-box.active");
+
+        if (activeMod) selectedModification.value = activeMod.dataset.model;
+        if (activeColor) selectedColor.value = activeColor.dataset.name;
+    });
+
+});
+</script>
+{% endblock %}

@@ -1,0 +1,190 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="config-page">
+    <div class="config-back">
+        <a href="{% url 'cars_list' %}">
+            ← Ro'yxatga qaytish
+        </a>
+    </div>
+
+<div class="config-container">
+
+    <!-- LEFT SIDE -->
+    <div class="config-left">
+
+        <img id="mainCar"
+             src="{% static 'images/damas/damas_white.png' %}"
+             alt="DAMAS-2">
+
+        <!-- SPECS -->
+        <div class="car-specs">
+            <div><span>Dvigatel quvvati</span><strong>38 o.k.</strong></div>
+            <div><span>100 km/soatgacha tezlanish</span><strong>41 sek</strong></div>
+            <div><span>100 km masofa uchun yoqilg'i sarfi</span><strong>7,8 / 8,6 L</strong></div>
+            <div><span>Uzatmalar qutisi</span><strong>5 MT</strong></div>
+        </div>
+
+<section class="tech-section">
+
+    <div class="tech-header">
+        <div class="tech-title">
+            <div class="tech-icon">📄</div>
+            <div>
+                <h3>Texnik xususiyatlar</h3>
+                <p>Texnik xususiyatlar, komplektatsiya va hujjatlar</p>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">
+            ⬇ Xarakteristikani yuklash
+        </a>
+    </div>
+
+    <div class="tech-content">
+
+        <div class="tech-menu">
+            <div class="tech-tab active">Tavsif</div>
+            <div class="tech-tab">Eksteryer</div>
+            <div class="tech-tab">Interyer</div>
+            <div class="tech-tab">Xususiyatlari</div>
+            <div class="tech-tab">Multimedia va texnologiyalar</div>
+        </div>
+
+        <div class="tech-display">
+            <img src="{% static 'images/damas/damas_white.png' %}" alt="DAMAS-2">
+
+            <p>
+                Tijorat va oilaviy foydalanishga mos yo'lovchi modifikatsiyasidagi ixcham miniven.
+                Yaxshilangan ichki jihozlari, qulay va funksional salon hamda o‘ziga xos dizayni
+                bilan Damas ixcham shaklda ham amaliylikni ham tejamkorlikni ta’minlaydi.
+                <br><br>
+                Kundalik foydalanish va texnik xizmat ko‘rsatishda oson bo‘lgan ushbu avtomobil
+                har kuni ishonchli yordamchi bo‘lib xizmat qiladi.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="config-right">
+
+    <h2>DAMAS-2</h2>
+    <p class="subtitle">Modifikatsiya va rangni tanlang</p>
+
+    <div class="config-tabs">
+        <div class="tab active">Konfiguratsiya</div>
+        <div class="tab">Muddatli to'lov kalkulyatori</div>
+    </div>
+
+    <!-- MODIFICATION -->
+    <div class="card-box">
+        <h4>Modifikatsiya</h4>
+
+        <div class="mod-option active" data-model="d2styleplus">
+            <span>D2 STYLE PLUS</span>
+            <strong>96,932,000 so'm</strong>
+        </div>
+
+        <div class="mod-option" data-model="d3stylekombi">
+            <span>D3 STYLE Kombi</span>
+            <strong>96,449,000 so'm</strong>
+        </div>
+
+        <div class="mod-option" data-model="d11style">
+            <span>D11 STYLE</span>
+            <strong>93,156,000 so'm</strong>
+        </div>
+    </div>
+
+    <!-- COLORS -->
+    <div class="card-box">
+        <h4>Rangni tanlang</h4>
+
+        <div class="color-grid">
+            <div class="color-box active"
+                 data-name="Summit White"
+                 data-models="d2styleplus,d3stylekombi,d11style"
+                 data-img="{% static 'images/damas/damas_white.png' %}"
+                 style="background:#f5f5f5;">
+            </div>
+        </div>
+
+        <p class="color-name" id="colorName">Summit White</p>
+    </div>
+
+    <!-- DEALER -->
+    <div class="card-box">
+
+        <form method="POST" action="{% url 'buy_car' %}" id="buyForm">
+            {% csrf_token %}
+            <input type="hidden" name="modification" id="selectedModification">
+            <input type="hidden" name="color" id="selectedColor">
+            <input type="hidden" name="model" value="DAMAS-2">
+
+            <label for="dealer">Avtosalonni tanlang</label>
+
+            <select name="dealer" id="dealer" required class="dealer-select">
+                <option value="">-- Avtosalon tanlang --</option>
+                {% for salon in autosalons %}
+                    <option value="{{ salon.id }}">
+                        {{ salon.name }} ({{ salon.city }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="buy-btn">
+                Xarid qilmoq
+            </button>
+        </form>
+
+    </div>
+
+</div>
+</div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const form = document.getElementById("buyForm");
+    const selectedModification = document.getElementById("selectedModification");
+    const selectedColor = document.getElementById("selectedColor");
+
+    const mods = document.querySelectorAll(".mod-option");
+    const activeColor = document.querySelector(".color-box.active");
+
+    mods.forEach(mod => {
+        mod.addEventListener("click", function(){
+            mods.forEach(m => m.classList.remove("active"));
+            this.classList.add("active");
+        });
+    });
+
+    form.addEventListener("submit", function(){
+
+        const activeMod = document.querySelector(".mod-option.active");
+
+        if (activeMod) {
+            selectedModification.value = activeMod.dataset.model;
+        }
+
+        if (activeColor) {
+            selectedColor.value = activeColor.dataset.name;
+        }
+
+    });
+
+});
+</script>
+
+{% endblock %}

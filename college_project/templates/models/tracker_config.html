@@ -1,0 +1,272 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="config-page">
+    <div class="config-back">
+        <a href="{% url 'cars_list' %}">
+            ← Ro'yxatga qaytish
+        </a>
+    </div>
+<div class="config-container">
+
+    <!-- LEFT SIDE -->
+    <div class="config-left">
+
+        <img id="mainCar"
+             src="{% static 'images/tracker/tracker_white.png' %}"
+             alt="Tracker-2">
+
+        <!-- SPECS -->
+        <div class="car-specs">
+            <div><span>Dvigatel quvvati</span><strong>132 o.k.</strong></div>
+            <div><span>0-100 km/soat</span><strong>11,1 sek</strong></div>
+            <div><span>100 km yoqilg‘i</span><strong>6,5 L</strong></div>
+            <div><span>Uzatmalar qutisi</span><strong>6AT</strong></div>
+        </div>
+
+<section class="tech-section">
+
+    <div class="tech-header">
+        <div class="tech-title">
+            <div class="tech-icon">📄</div>
+            <div>
+                <h3>Texnik xususiyatlar</h3>
+                <p>Texnik xususiyatlar, komplektatsiya va hujjatlar</p>
+            </div>
+        </div>
+
+        <a href="#" class="download-btn">
+            ⬇ Xarakteristikani yuklash
+        </a>
+    </div>
+
+    <div class="tech-content">
+
+        <div class="tech-menu">
+            <div class="tech-tab active">Tasvir</div>
+            <div class="tech-tab">Eksteryer</div>
+            <div class="tech-tab">Interyer</div>
+            <div class="tech-tab">Xavfsizlik</div>
+            <div class="tech-tab">Multimedia va texnologiyalar</div>
+        </div>
+
+        <div class="tech-display">
+
+            <img src="{% static 'images/tracker/tracker_gray.png' %}" alt="Tracker-2">
+
+            <p>
+                Chevrolet Tracker-2 – zamonaviy va tejamkor krossover.
+                Turbo dvigatel, avtomat 6AT uzatmalar qutisi, keng salon va
+                ilg‘or xavfsizlik tizimlari bilan jihozlangan.
+                Shahar va uzoq safarlar uchun ideal tanlov.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="config-right">
+
+        <h2>TRACKER-2</h2>
+        <p class="subtitle">Modifikatsiya va rangni tanlang</p>
+
+        <div class="config-tabs">
+            <div class="tab active">Konfiguratsiya</div>
+            <div class="tab">Muddatli to‘lov kalkulyatori</div>
+        </div>
+
+        <!-- MODIFICATION -->
+        <div class="card-box">
+
+            <h4>Modifikatsiya</h4>
+
+            <div class="mod-option active" data-model="ls">
+                <span>TRK LS PLUS</span>
+                <strong>215,951,360 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="ltz">
+                <span>TRK LTZ PLUS</span>
+                <strong>229,108,480 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="premier">
+                <span>TRK PREMIER PLUS</span>
+                <strong>256,656,160 so'm</strong>
+            </div>
+
+            <div class="mod-option" data-model="redline">
+                <span>TRK REDLINE</span>
+                <strong>260,474,080 so'm</strong>
+            </div>
+
+        </div>
+
+        <!-- COLORS -->
+        <div class="card-box">
+
+            <h4>Rangni tanlang</h4>
+
+            <div class="color-grid">
+
+                <div class="color-box active"
+                     data-name="Summit White"
+                     data-models="ls,ltz,premier,redline"
+                     data-img="{% static 'images/tracker/tracker_white.png' %}"
+                     style="background:#f1f1f1;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Black"
+                     data-models="ls,ltz,premier,redline"
+                     data-img="{% static 'images/tracker/tracker_black.png' %}"
+                     style="background:#000;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Blue"
+                     data-models="ltz,premier,redline"
+                     data-img="{% static 'images/tracker/tracker_blue.png' %}"
+                     style="background:#2c4f86;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Red"
+                     data-models="premier,redline"
+                     data-img="{% static 'images/tracker/tracker_red.png' %}"
+                     style="background:#9b2d3a;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Gray"
+                     data-models="ltz,premier,redline"
+                     data-img="{% static 'images/tracker/tracker_gray.png' %}"
+                     style="background:#6f7a86;">
+                </div>
+
+                <div class="color-box"
+                     data-name="Silver"
+                     data-models="ls,ltz,premier"
+                     data-img="{% static 'images/tracker/tracker_silver.png' %}"
+                     style="background:#bfc3cc;">
+                </div>
+
+            </div>
+
+            <p class="color-name" id="colorName">Summit White</p>
+
+        </div>
+
+        <!-- DEALER -->
+        <div class="card-box">
+
+            <form method="POST" action="{% url 'buy_car' %}" id="buyForm">
+                {% csrf_token %}
+                <input type="hidden" name="modification" id="selectedModification">
+                <input type="hidden" name="color" id="selectedColor">
+
+                <input type="hidden" name="model" value="Tracker-2">
+
+                <label for="dealer">Avtosalonni tanlang</label>
+
+                <select name="dealer" id="dealer" required class="dealer-select">
+                    <option value="">-- Avtosalon tanlang --</option>
+                    {% for salon in autosalons %}
+                        <option value="{{ salon.id }}">
+                            {{ salon.name }} ({{ salon.city }})
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <button type="submit" class="buy-btn">
+                    Xarid qilmoq
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+    const form = document.getElementById("buyForm");
+    const selectedModification = document.getElementById("selectedModification");
+    const selectedColor = document.getElementById("selectedColor");
+
+    const colors = document.querySelectorAll(".color-box");
+    const mods = document.querySelectorAll(".mod-option");
+    const car = document.getElementById("mainCar");
+    const colorName = document.getElementById("colorName");
+
+    let currentModel = "ls";
+
+    mods.forEach(mod => {
+        mod.addEventListener("click", function(){
+            mods.forEach(m => m.classList.remove("active"));
+            this.classList.add("active");
+            currentModel = this.dataset.model;
+            updateColors();
+        });
+    });
+
+    colors.forEach(color => {
+        color.addEventListener("click", function(){
+            if (this.style.display === "none") return;
+            colors.forEach(c => c.classList.remove("active"));
+            this.classList.add("active");
+            car.src = this.dataset.img;
+            colorName.innerText = this.dataset.name;
+        });
+    });
+
+    function updateColors() {
+        let firstAvailable = null;
+
+        colors.forEach(color => {
+            const allowedModels = color.dataset.models.split(",");
+            if (allowedModels.includes(currentModel)) {
+                color.style.display = "block";
+                if (!firstAvailable) firstAvailable = color;
+            } else {
+                color.style.display = "none";
+                color.classList.remove("active");
+            }
+        });
+
+        if (firstAvailable) {
+            colors.forEach(c => c.classList.remove("active"));
+            firstAvailable.classList.add("active");
+            car.src = firstAvailable.dataset.img;
+            colorName.innerText = firstAvailable.dataset.name;
+        }
+    }
+
+    form.addEventListener("submit", function(){
+        const activeMod = document.querySelector(".mod-option.active");
+        const activeColor = document.querySelector(".color-box.active");
+
+        if (activeMod) selectedModification.value = activeMod.dataset.model;
+        if (activeColor) selectedColor.value = activeColor.dataset.name;
+    });
+
+});
+</script>
+
+{% endblock %}
